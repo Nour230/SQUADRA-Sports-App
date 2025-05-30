@@ -8,58 +8,8 @@
 import UIKit
 import Kingfisher
 import Alamofire
-struct LeaguesResponse: Codable {
-    let result: [LeagueModel]
-}
 
-struct LeagueModel: Codable {
-    let leagueName: String
-    let leagueLogo: String?
-    let countryName: String?
-    let countryLogo: String?
-    
-    enum CodingKeys: String,CodingKey {
-        case leagueName = "league_name"
-        case leagueLogo = "league_logo"
-        case countryName = "country_name"
-        case countryLogo = "country_logo"
-    }
-}
-class LeaguesPresenter {
-    var sportName: String
-    var leaguesTableView: LeaguesProtocol
-    
-    init(leaguesTableView: LeaguesProtocol, sportName: String) {
-        self.leaguesTableView = leaguesTableView
-        self.sportName = sportName
-    }
 
-    func getDataFromModel() {
-        NetworkService.getLeagues(sportName: sportName) { res in
-            self.leaguesTableView.renderLeaguesTableView(result: res)
-        }
-    }
-}
-protocol LeaguesProtocol {
-    func renderLeaguesTableView(result: LeaguesResponse)
-}
-enum APIKeys {
-    static let NourAPIKey = "02c36a40019a925e2e5f1ae5a9627cc5e4a1022b7b15fda424ae9297f90b87f3"
-}
-class NetworkService {
-    static func getLeagues(sportName: String, handler: @escaping (LeaguesResponse)->Void) {
-        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Leagues&APIkey=\(APIKeys.NourAPIKey)")
-            .responseDecodable(of: LeaguesResponse.self) { response in
-                switch response.result {
-                case .success(let items):
-                    handler(items)
-                    print(items.result.count)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-    }
-}
 class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         
     var leaguesArray : [LeagueModel] = []
