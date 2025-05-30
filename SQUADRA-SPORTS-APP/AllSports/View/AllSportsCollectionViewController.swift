@@ -65,7 +65,7 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let cellHeight: CGFloat = 320
+        let cellHeight: CGFloat = 350
         let lineSpacing: CGFloat = 20
         let numberOfRows: CGFloat = 2
 
@@ -103,6 +103,14 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
         cell.sportsName.text = sportsData[indexPath.row].name
         cell.sportsImageView.image = UIImage(named: sportsData[indexPath.row].img)
         return cell
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let leaguesStoryboard = UIStoryboard(name: "Leagues", bundle: nil)
+        if let leaguesTableVC = leaguesStoryboard.instantiateViewController(withIdentifier: "Leagues") as? LeaguesTableViewController {
+            leaguesTableVC.sportName = sportsData[indexPath.row].name.lowercased()
+            
+            navigationController?.pushViewController(leaguesTableVC, animated: true)
+        }
     }
 
     // MARK: UICollectionViewDelegate

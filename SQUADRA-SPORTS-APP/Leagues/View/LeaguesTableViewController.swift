@@ -8,7 +8,9 @@
 import UIKit
 
 class LeaguesTableViewController: UITableViewController {
-
+    
+    var sportName :String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
