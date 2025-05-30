@@ -59,13 +59,14 @@
             </objects>
             <point key="canvasLocation" x="-1491" y="-13"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Sports Categories-->
         <scene sceneID="zhI-BN-I6T">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wWA-Bn-BJw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="CEm-sg-y8d"/>
+                    <navigationItem key="navigationItem" title="Sports Categories" id="CEm-sg-y8d"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="es8-ZN-lO2">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
