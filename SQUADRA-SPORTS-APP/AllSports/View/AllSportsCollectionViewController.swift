@@ -12,6 +12,7 @@ private let reuseIdentifier = "Cell"
 class AllSportsCollectionViewController: UICollectionViewController ,UICollectionViewDelegateFlowLayout , AllSportsProtocol{
     
     var sportsData : [AllSportsModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -100,18 +101,25 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sportsCell", for: indexPath) as! CollectionViewCell
-        cell.sportsName.text = sportsData[indexPath.row].name
-        cell.sportsImageView.image = UIImage(named: sportsData[indexPath.row].img)
+        cell.sportsName.text = sportsData[indexPath.row].name!
+        cell.sportsImageView.image = UIImage(named: sportsData[indexPath.row].img!)
         return cell
     }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let leaguesStoryboard = UIStoryboard(name: "Leagues", bundle: nil)
         if let leaguesTableVC = leaguesStoryboard.instantiateViewController(withIdentifier: "Leagues") as? LeaguesTableViewController {
-            leaguesTableVC.sportName = sportsData[indexPath.row].name.lowercased()
             
+            guard let name = sportsData[indexPath.row].name else { return }
+            let sportName = name.lowercased()
+            
+            let leaguesPresenter = LeaguesPresenter(leaguesTableView: leaguesTableVC, sportName: sportName)
+            leaguesTableVC.leaguesPresenter = leaguesPresenter
             navigationController?.pushViewController(leaguesTableVC, animated: true)
         }
     }
+
+
 
     // MARK: UICollectionViewDelegate
 

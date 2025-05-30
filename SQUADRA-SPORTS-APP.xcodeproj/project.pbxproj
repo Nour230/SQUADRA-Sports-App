@@ -23,8 +23,9 @@
 		14B25D5C2DE94968004788ED /* AllSportsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B25D5B2DE94968004788ED /* AllSportsCollectionViewController.swift */; };
 		14B25D5F2DE949B6004788ED /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B25D5D2DE949B6004788ED /* CollectionViewCell.swift */; };
 		14B25D602DE949B6004788ED /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B25D5E2DE949B6004788ED /* CollectionViewCell.xib */; };
-		14B25D632DE95373004788ED /* AllProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B25D622DE95373004788ED /* AllProtocols.swift */; };
-		14F36FF62DEA583300F4687F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 14F36FF52DEA583300F4687F /* Alamofire */; };
+		14F36FF92DEA59F300F4687F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 14F36FF82DEA59F300F4687F /* Alamofire */; };
+		14F36FFE2DEA5A9200F4687F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 14F36FFD2DEA5A9200F4687F /* Kingfisher */; };
+		14F370062DEA5C2400F4687F /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = 14F370052DEA5C2400F4687F /* Utilities */; };
 		B857F1E42DE9418500BA2AAF /* LeaguesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B857F1E32DE9418500BA2AAF /* LeaguesTableViewController.swift */; };
 		B857F1E72DE941A800BA2AAF /* LeaguesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B857F1E62DE941A800BA2AAF /* LeaguesTableViewCell.xib */; };
 		B857F1E82DE941A800BA2AAF /* LeaguesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B857F1E52DE941A800BA2AAF /* LeaguesTableViewCell.swift */; };
@@ -68,7 +69,7 @@
 		14B25D5B2DE94968004788ED /* AllSportsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSportsCollectionViewController.swift; sourceTree = "<group>"; };
 		14B25D5D2DE949B6004788ED /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		14B25D5E2DE949B6004788ED /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
-		14B25D622DE95373004788ED /* AllProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProtocols.swift; sourceTree = "<group>"; };
+		14F370052DEA5C2400F4687F /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utilities; sourceTree = "<group>"; };
 		B857F1E32DE9418500BA2AAF /* LeaguesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTableViewController.swift; sourceTree = "<group>"; };
 		B857F1E52DE941A800BA2AAF /* LeaguesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTableViewCell.swift; sourceTree = "<group>"; };
 		B857F1E62DE941A800BA2AAF /* LeaguesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaguesTableViewCell.xib; sourceTree = "<group>"; };
@@ -79,7 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14F36FF62DEA583300F4687F /* Alamofire in Frameworks */,
+				14F36FFE2DEA5A9200F4687F /* Kingfisher in Frameworks */,
+				14F36FF92DEA59F300F4687F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +125,7 @@
 		14B25D182DE93EBB004788ED /* SQUADRA-SPORTS-APP */ = {
 			isa = PBXGroup;
 			children = (
+				14F370052DEA5C2400F4687F /* Utilities */,
 				14B25D512DE93F36004788ED /* Leagues */,
 				14B25D4F2DE93F10004788ED /* AllSports */,
 				14B25D4E2DE93EEB004788ED /* Resources */,
@@ -180,7 +183,6 @@
 		14B25D502DE93F23004788ED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				14B25D612DE9535D004788ED /* Protocols */,
 				14B25D1D2DE93EBB004788ED /* ViewController.swift */,
 				14B25D1F2DE93EBB004788ED /* Main.storyboard */,
 				14B25D272DE93EBD004788ED /* LaunchScreen.storyboard */,
@@ -226,14 +228,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		14B25D612DE9535D004788ED /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				14B25D622DE95373004788ED /* AllProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,7 +245,8 @@
 			);
 			name = "SQUADRA-SPORTS-APP";
 			packageProductDependencies = (
-				14F36FF52DEA583300F4687F /* Alamofire */,
+				14F36FF82DEA59F300F4687F /* Alamofire */,
+				14F36FFD2DEA5A9200F4687F /* Kingfisher */,
 			);
 			productName = "SQUADRA-SPORTS-APP";
 			productReference = 14B25D162DE93EBB004788ED /* SQUADRA-SPORTS-APP.app */;
@@ -326,8 +321,8 @@
 			);
 			mainGroup = 14B25D0D2DE93EBB004788ED;
 			packageReferences = (
-				146B35BC2DEA572900BE40E4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				14F36FF42DEA583300F4687F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				14F36FFC2DEA5A9200F4687F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 14B25D172DE93EBB004788ED /* Products */;
 			projectDirPath = "";
@@ -349,6 +344,7 @@
 				14B25D262DE93EBD004788ED /* Assets.xcassets in Resources */,
 				14B25D602DE949B6004788ED /* CollectionViewCell.xib in Resources */,
 				B857F1E72DE941A800BA2AAF /* LeaguesTableViewCell.xib in Resources */,
+				14F370062DEA5C2400F4687F /* Utilities in Resources */,
 				14B25D212DE93EBB004788ED /* Main.storyboard in Resources */,
 				14B25D542DE93F5A004788ED /* Leagues.storyboard in Resources */,
 			);
@@ -383,7 +379,6 @@
 				14B25D1C2DE93EBB004788ED /* SceneDelegate.swift in Sources */,
 				14B25D5C2DE94968004788ED /* AllSportsCollectionViewController.swift in Sources */,
 				14B25D572DE93FAB004788ED /* AllSportsModel.swift in Sources */,
-				14B25D632DE95373004788ED /* AllProtocols.swift in Sources */,
 				B857F1E82DE941A800BA2AAF /* LeaguesTableViewCell.swift in Sources */,
 				B857F1E42DE9418500BA2AAF /* LeaguesTableViewController.swift in Sources */,
 			);
@@ -723,15 +718,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		146B35BC2DEA572900BE40E4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = exactVersion;
-				version = 7.11.0;
-			};
-		};
-		14F36FF42DEA583300F4687F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -739,13 +726,26 @@
 				version = 5.9.0;
 			};
 		};
+		14F36FFC2DEA5A9200F4687F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = exactVersion;
+				version = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		14F36FF52DEA583300F4687F /* Alamofire */ = {
+		14F36FF82DEA59F300F4687F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 14F36FF42DEA583300F4687F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		14F36FFD2DEA5A9200F4687F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14F36FFC2DEA5A9200F4687F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

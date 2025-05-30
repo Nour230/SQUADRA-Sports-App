@@ -6,6 +6,9 @@
 //
 
 import Foundation
+protocol AllSportsProtocol{
+   func displaySports(sports: [AllSportsModel])
+}
 
 class AllSportsPresenter {
     var allSportsViewController: AllSportsProtocol!
