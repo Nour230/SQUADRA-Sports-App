@@ -6,16 +6,31 @@
 //
 
 import UIKit
+import Kingfisher
 
-class LeaguesTableViewController: UITableViewController {
-    
-    var sportName :String!
+class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
+        
+    var leaguesArray : [LeagueModel] = []
+    var leaguesPresenter : LeaguesPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Leagues"
 
         let nib = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "LeaguesCell")
+        
+        //leaguesPresenter = LeaguesPresenter(leaguesTableView: self)
+        leaguesPresenter.getDataFromModel()
+        self.tableView.reloadData()
+    }
+    
+    func renderLeaguesTableView(result: LeaguesResponse) {
+        DispatchQueue.main.async {
+            self.leaguesArray = result.result
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -25,23 +40,39 @@ class LeaguesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return leaguesArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesCell", for: indexPath) as! LeaguesTableViewCell
 
         // Configure the cell...
-        cell.leagueImageView.image = UIImage(named: "1")
-        cell.leagueNameLabel.text = "Premier League"
-        cell.leagueCountryImageView.image = UIImage(named: "2")
-        cell.leagueCountryNameLabel.text = "England"
+        if let leagueLogo = leaguesArray[indexPath.row].leagueLogo,
+           let url = URL(string: leagueLogo) {
+            cell.leagueImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+        } else {
+            cell.leagueImageView.image = UIImage(named: "UnkownLeague")
+        }
+
+        cell.leagueNameLabel.text = leaguesArray[indexPath.row].leagueName
+        if let countryLogo = leaguesArray[indexPath.row].countryLogo,
+           let url = URL(string: countryLogo) {
+            cell.leagueCountryImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownFlag"))
+        } else {
+            cell.leagueCountryImageView.image = UIImage(named: "UnkownFlag")
+        }
+        
+        if let countryName = leaguesArray[indexPath.row].countryName {
+            cell.leagueCountryNameLabel.text = countryName
+        } else {
+            cell.leagueCountryNameLabel.text = "Unkown Country"
+        }
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
     
 
