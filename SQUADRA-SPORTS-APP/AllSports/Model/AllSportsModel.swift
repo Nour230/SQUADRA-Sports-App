@@ -8,8 +8,8 @@
 import Foundation
 
 class AllSportsModel{
-    var name :String
-    var img :String
+    var name :String?
+    var img :String?
     
     init(name: String, img: String) {
         self.name = name
