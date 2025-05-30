@@ -131,7 +131,7 @@
 		14B25D182DE93EBB004788ED /* SQUADRA-SPORTS-APP */ = {
 			isa = PBXGroup;
 			children = (
-				14F370142DEA631400F4687F /* Utiltes */,
+				14F370142DEA631400F4687F /* Utilites */,
 				14F3700F2DEA60CA00F4687F /* Data */,
 				14B25D512DE93F36004788ED /* Leagues */,
 				14B25D4F2DE93F10004788ED /* AllSports */,
@@ -277,12 +277,12 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		14F370142DEA631400F4687F /* Utiltes */ = {
+		14F370142DEA631400F4687F /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
 				14F370162DEA633500F4687F /* Enums */,
 			);
-			path = Utiltes;
+			path = Utilites;
 			sourceTree = "<group>";
 		};
 		14F370162DEA633500F4687F /* Enums */ = {
