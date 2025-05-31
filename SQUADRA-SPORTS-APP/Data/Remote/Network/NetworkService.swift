@@ -15,10 +15,37 @@ class NetworkService {
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print(items.result.count)
+                    print(items.result[0].leagueID!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
     }
+    
+    
+    static func getLeagueDetails(sportName: String,leagueID:Int, handler: @escaping (UpcomingEventResponse)->Void) {
+        let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "yyyy-MM-dd"
+           
+           let currentDate = Date()
+           let oneYearLater = Calendar.current.date(byAdding: .year, value: 1, to: currentDate)!
+
+           let fromDate = dateFormatter.string(from: currentDate)
+           let toDate = dateFormatter.string(from: oneYearLater)
+        
+        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=2024-05-31&to=2025-05-31&APIkey=\(APIKeys.NourAPIKey)")
+            .responseDecodable(of: UpcomingEventResponse.self) { response in
+                switch response.result {
+                case .success(let items):
+                    handler(items)
+                    print(items.result[0].leagueId!)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
+    
+    
+    
 }

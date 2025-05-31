@@ -24,7 +24,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         tableView.register(nib, forCellReuseIdentifier: "LeaguesCell")
         
         //leaguesPresenter = LeaguesPresenter(leaguesTableView: self)
-        leaguesPresenter.getDataFromModel()
+        leaguesPresenter.getLeagueFromNetwork()
         self.tableView.reloadData()
     }
     
@@ -77,7 +77,18 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         return 55
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let leagueDetailsStoryboard = UIStoryboard(name: "LeagueDetails", bundle: nil)
+        if let leagueDetailsCollectionVC = leagueDetailsStoryboard.instantiateViewController(withIdentifier: "LeagueDetails") as? LeagueDetailsCollectionViewController {
+            
+            let name = leaguesPresenter.sportName
+            guard let leagueID = leaguesArray[indexPath.row].leagueID else { return }
+            
+            let leagueDetailsPresenter = LeagueDetailsPresenter(sportName: name, leagueID: leagueID, leaguesDetailsCollectionView: leagueDetailsCollectionVC)
+            leagueDetailsCollectionVC.leagueDetailsPresenter = leagueDetailsPresenter
+            navigationController?.pushViewController(leagueDetailsCollectionVC, animated: true)
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
