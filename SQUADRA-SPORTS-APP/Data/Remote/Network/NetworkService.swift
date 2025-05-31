@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 class NetworkService {
+    
     static func getLeagues(sportName: String, handler: @escaping (LeaguesResponse)->Void) {
         AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Leagues&APIkey=\(APIKeys.NourAPIKey)")
             .responseDecodable(of: LeaguesResponse.self) { response in
@@ -22,16 +23,15 @@ class NetworkService {
             }
     }
     
-    
-    static func getLeagueDetails(sportName: String,leagueID:Int, handler: @escaping (UpcomingEventResponse)->Void) {
+    static func getUpcomingLeagueDetails(sportName: String,leagueID:Int, handler: @escaping (UpcomingEventResponse)->Void) {
         let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "yyyy-MM-dd"
-           
-           let currentDate = Date()
-           let oneYearLater = Calendar.current.date(byAdding: .year, value: 1, to: currentDate)!
-
-           let fromDate = dateFormatter.string(from: currentDate)
-           let toDate = dateFormatter.string(from: oneYearLater)
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let currentDate = Date()
+        let oneYearLater = Calendar.current.date(byAdding: .year, value: 1, to: currentDate)!
+        
+        let fromDate = dateFormatter.string(from: currentDate)
+        let toDate = dateFormatter.string(from: oneYearLater)
         
         AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=2024-05-31&to=2025-05-31&APIkey=\(APIKeys.NourAPIKey)")
             .responseDecodable(of: UpcomingEventResponse.self) { response in
@@ -45,7 +45,26 @@ class NetworkService {
             }
     }
     
-    
-    
+    static func getLatestResultsLeagueDetails(sportName: String,leagueID: Int, handler: @escaping (LatestResultsEventResponse)->Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let currentDate = Date()
+        let oneYearBefore = Calendar.current.date(byAdding: .year, value: -1, to: currentDate)!
+
+        let fromDate = dateFormatter.string(from: oneYearBefore)
+        let toDate = dateFormatter.string(from: currentDate)
+        
+        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=2024-05-31&to=2025-05-31&APIkey=\(APIKeys.NourAPIKey)")
+            .responseDecodable(of: LatestResultsEventResponse.self) { response in
+                switch response.result {
+                case .success(let items):
+                    handler(items)
+                    print(items.result[0].leagueID!)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
     
 }

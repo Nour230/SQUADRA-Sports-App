@@ -18,10 +18,15 @@ class LeagueDetailsPresenter{
         self.leaguesDetailsCollectionView = leaguesDetailsCollectionView
     }
     
+    func getUpcomingLeagueDetailsFromNetwork() {
+        NetworkService.getUpcomingLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
+            self.leaguesDetailsCollectionView.displayUpcomingLeagueDetails(res: res)
+        }
+    }
     
-    func getLeagueDetailsFromNetwork() {
-        NetworkService.getLeagueDetails(sportName: sportName, leagueID: leagueID ) { res in
-            self.leaguesDetailsCollectionView.displayLeagueDetails(res: res)
+    func getLatestResultsLeagueDetailsFromNetwork() {
+        NetworkService.getLatestResultsLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
+            self.leaguesDetailsCollectionView.displayLatestResultsLeagueDetails(res: res)
         }
     }
 }
