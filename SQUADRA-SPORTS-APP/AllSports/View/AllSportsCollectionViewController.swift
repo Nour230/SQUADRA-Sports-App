@@ -9,6 +9,10 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+protocol AllSportsProtocol{
+   func displaySports(sports: [AllSportsModel])
+}
+
 class AllSportsCollectionViewController: UICollectionViewController ,UICollectionViewDelegateFlowLayout , AllSportsProtocol{
     
     var sportsData : [AllSportsModel] = []
