@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LeagueDetailsProtocol{
-   func displayLeagueDetails()
+    func displayLeagueDetails(res : UpcomingEventResponse)
 }
 
 private let reuseIdentifier = "Cell"
@@ -37,7 +37,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         // Do any additional setup after loading the view.
     }
 
-    func displayLeagueDetails() {
+    func displayLeagueDetails(res : UpcomingEventResponse) {
         
     }
     /*

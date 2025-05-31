@@ -24,7 +24,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         tableView.register(nib, forCellReuseIdentifier: "LeaguesCell")
         
         //leaguesPresenter = LeaguesPresenter(leaguesTableView: self)
-        leaguesPresenter.getDataFromModel()
+        leaguesPresenter.getLeagueFromNetwork()
         self.tableView.reloadData()
     }
     
