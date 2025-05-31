@@ -79,7 +79,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsStoryboard = UIStoryboard(name: "LeaguesDetails", bundle: nil)
-        if let leagueDetailsCollectionVC = leagueDetailsStoryboard.instantiateViewController(withIdentifier: "") as? LeagueDetailsCollectionViewController {
+        if let leagueDetailsCollectionVC = leagueDetailsStoryboard.instantiateViewController(withIdentifier: "LeagueDetails") as? LeagueDetailsCollectionViewController {
             
             let name = leaguesPresenter.sportName
             guard let leagueID = leaguesArray[indexPath.row].leagueID else { return }
