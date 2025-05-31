@@ -16,7 +16,7 @@ class LeaguesPresenter {
         self.sportName = sportName
     }
 
-    func getDataFromModel() {
+    func getLeagueFromNetwork() {
         NetworkService.getLeagues(sportName: sportName) { res in
             self.leaguesTableView.renderLeaguesTableView(result: res)
         }

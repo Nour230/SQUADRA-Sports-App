@@ -18,4 +18,10 @@ class LeagueDetailsPresenter{
         self.leaguesDetailsCollectionView = leaguesDetailsCollectionView
     }
     
+    
+    func getLeagueDetailsFromNetwork() {
+        NetworkService.getLeagueDetails(sportName: sportName, leagueID: leagueID ) { res in
+            self.leaguesDetailsCollectionView.displayLeagueDetails(res: res)
+        }
+    }
 }
