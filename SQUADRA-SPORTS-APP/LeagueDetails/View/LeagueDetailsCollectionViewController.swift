@@ -7,9 +7,14 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+protocol LeagueDetailsProtocol{
+   func displayLeagueDetails()
+}
 
-class LeagueDetailsCollectionViewController: UICollectionViewController {
+private let reuseIdentifier = "Cell"
+class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueDetailsProtocol{
+    
+    var leagueDetailsPresenter : LeagueDetailsPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +25,13 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
+        
         // Do any additional setup after loading the view.
     }
 
+    func displayLeagueDetails() {
+        
+    }
     /*
     // MARK: - Navigation
 
