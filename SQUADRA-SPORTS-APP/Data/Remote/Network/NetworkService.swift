@@ -15,7 +15,7 @@ class NetworkService {
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print(items.result.count)
+                    print(items.result[0].leagueID!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
