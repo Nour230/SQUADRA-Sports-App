@@ -17,13 +17,13 @@ struct UpcomingEventModel: Codable {
     let leagueLogo: String?
     let countryName: String?
     let countryLogo: String?
-    let leagueID :Int?
-    let awayTeamKey: String?
+    let leagueId :Int?
+    let awayTeamKey: Int?
     let awayTeamLogo: String?
-    let awayTeamName: String?
-    let homeTeamKey: String?
+    let eventAwayTeam: String?
+    let homeTeamKey: Int?
     let homeTeamLogo: String?
-    let homeTeamName: String?
+    let eventHomeTeam: String?
     let leagueSeason :String?
     let eventDate :String?
     let eventTime :String?
@@ -31,10 +31,10 @@ struct UpcomingEventModel: Codable {
     enum CodingKeys: String,CodingKey {
         case awayTeamKey = "away_team_key"
         case awayTeamLogo = "away_team_logo"
-        case awayTeamName = "event_away_team"
+        case eventAwayTeam = "event_away_team"
         case homeTeamKey = "home_team_key"
         case homeTeamLogo = "home_team_logo"
-        case homeTeamName = "event_home_team"
+        case eventHomeTeam = "event_home_team"
         case leagueSeason = "league_season"
         case eventDate = "event_date"
         case eventTime = "event_time"
@@ -42,7 +42,7 @@ struct UpcomingEventModel: Codable {
         case leagueLogo = "league_logo"
         case countryName = "country_name"
         case countryLogo = "country_logo"
-        case leagueID = "league_key"
+        case leagueId = "league_key"
     }
 }
 

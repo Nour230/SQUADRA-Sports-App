@@ -33,12 +33,12 @@ class NetworkService {
            let fromDate = dateFormatter.string(from: currentDate)
            let toDate = dateFormatter.string(from: oneYearLater)
         
-        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=\(fromDate)&to=\(toDate)&APIkey=\(APIKeys.NourAPIKey)")
+        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=2024-05-31&to=2025-05-31&APIkey=\(APIKeys.NourAPIKey)")
             .responseDecodable(of: UpcomingEventResponse.self) { response in
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print(items.result[0].leagueID!)
+                    print(items.result[0].leagueId!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
