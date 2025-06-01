@@ -255,9 +255,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
             if let homeTeamLogo = event.homeTeamLogo,
                let url = URL(string: homeTeamLogo) {
-                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
             } else {
-                cell.homeTeamImageView.image = UIImage(named: "UnkownLeague")
+                cell.homeTeamImageView.image = UIImage(named: "UnkownTeam")
             }
             if let homeTeamName = event.eventHomeTeam {
                 cell.homeTeamLabel.text = homeTeamName
@@ -267,9 +267,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
             if let awayTeamLogo = event.awayTeamLogo,
                let url = URL(string: awayTeamLogo) {
-                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
             } else {
-                cell.awayTeamImageView.image = UIImage(named: "UnkownLeague")
+                cell.awayTeamImageView.image = UIImage(named: "UnkownTeam")
             }
             if let awayTeamName = event.eventAwayTeam {
                 cell.awayTeamLabel.text = awayTeamName
@@ -298,9 +298,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
             if let homeTeamLogo = event.homeTeamLogo,
                let url = URL(string: homeTeamLogo) {
-                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
             } else {
-                cell.homeTeamImageView.image = UIImage(named: "UnkownLeague")
+                cell.homeTeamImageView.image = UIImage(named: "UnkownTeam")
             }
             if let homeTeamName = event.homeTeamName {
                 cell.homeTeamLabel.text = homeTeamName
@@ -310,9 +310,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
             if let awayTeamLogo = event.awayTeamLogo,
                let url = URL(string: awayTeamLogo) {
-                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
             } else {
-                cell.awayTeamImageView.image = UIImage(named: "UnkownLeague")
+                cell.awayTeamImageView.image = UIImage(named: "UnkownTeam")
             }
             if let awayTeamName = event.awayTeamName {
                 cell.awayTeamLabel.text = awayTeamName
@@ -339,9 +339,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
             if let teamLogo = team.teamLogo,
                let url = URL(string: teamLogo) {
-                cell?.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+                cell?.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
             } else {
-                cell?.teamImageView.image = UIImage(named: "UnkownLeague")
+                cell?.teamImageView.image = UIImage(named: "UnkownTeam")
             }
             if let teamName = team.teamName {
                 cell?.teamNameLable.text = teamName
@@ -381,7 +381,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         return header
     }
 
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let teamDetailsStoryboard = UIStoryboard(name: "TeamDetails", bundle: nil)
+        if let teamDetailsTableVC = teamDetailsStoryboard.instantiateViewController(withIdentifier: "TeamDetails") as? TeamDetailsViewController {
+            
+            let selectedTeam = allTeams[indexPath.row]
+            
+            let teamDetailsPresenter = TeamDetailsPresenter(selectedTeam: selectedTeam, teamDetailsTableView: teamDetailsTableVC)
+            teamDetailsTableVC.teamDetailsPresenter = teamDetailsPresenter
+            navigationController?.pushViewController(teamDetailsTableVC, animated: true)
+        }
+    }
 
     // MARK: UICollectionViewDelegate
 
