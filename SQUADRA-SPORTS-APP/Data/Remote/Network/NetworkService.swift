@@ -67,4 +67,17 @@ class NetworkService {
             }
     }
     
+    
+    static func getAllTeamsDetails(sportName: String,leagueID: Int, handler: @escaping (AllTeamsResponse)->Void) {
+        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Teams&leagueId=\(leagueID)&APIkey=\(APIKeys.NourAPIKey)")
+            .responseDecodable(of: AllTeamsResponse.self) { response in
+                switch response.result {
+                case .success(let items):
+                    handler(items)
+                    print(items.result)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
 }

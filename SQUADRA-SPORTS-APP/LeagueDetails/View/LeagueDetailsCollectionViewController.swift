@@ -10,6 +10,7 @@ import UIKit
 protocol LeagueDetailsProtocol{
     func displayUpcomingLeagueDetails(res : UpcomingEventResponse)
     func displayLatestResultsLeagueDetails(res : LatestResultsEventResponse)
+    func displayAllTeams(res: AllTeamsResponse)
 }
 
 private let reuseIdentifier = "Cell"
@@ -19,7 +20,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     
     var upcomingEvents : [UpcomingEventModel] = []
     var latestEvents : [LatestResultsEventModel] = []
-    
+    var allTeams : [TeamModel] = []
     var headerLeagueDetails : LatestResultsEventModel!
 
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         // Do any additional setup after loading the view.
         leagueDetailsPresenter.getUpcomingLeagueDetailsFromNetwork()
         leagueDetailsPresenter.getLatestResultsLeagueDetailsFromNetwork()
+        leagueDetailsPresenter.getAllTeamsFromNetwork()
     }
 
     func displayUpcomingLeagueDetails(res : UpcomingEventResponse) {
@@ -59,8 +61,16 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     
     func displayLatestResultsLeagueDetails(res: LatestResultsEventResponse) {
         DispatchQueue.main.async {
-            self.latestEvents = res.result
+            self.latestEvents = Array(res.result.prefix(10))
             self.headerLeagueDetails = self.latestEvents.first
+            self.collectionView.reloadData()
+        }
+    }
+
+    
+    func displayAllTeams(res: AllTeamsResponse) {
+        DispatchQueue.main.async {
+            self.allTeams = res.result
             self.collectionView.reloadData()
         }
     }
@@ -156,7 +166,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         case 2:
             return latestEvents.count
         case 3:
-            return 5
+            return allTeams.count
         default:
             return 0
         }
@@ -285,7 +295,20 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             return cell
             
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEvents", for: indexPath) as? EventCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell
+            let team = allTeams[indexPath.item]
+            
+            if let teamLogo = team.teamLogo,
+               let url = URL(string: teamLogo) {
+                cell?.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+            } else {
+                cell?.teamImageView.image = UIImage(named: "UnkownLeague")
+            }
+            if let teamName = team.teamName {
+                cell?.teamNameLable.text = teamName
+            } else {
+                cell?.teamNameLable.text = "Unkown Team"
+            }
             return cell!
         }
     

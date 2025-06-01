@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143D0A672DEC3BBB00F5464F /* AllTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D0A662DEC3BBB00F5464F /* AllTeams.swift */; };
 		14A263432DEB35B700055EFC /* LeagueDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A263422DEB35B700055EFC /* LeagueDetails.storyboard */; };
 		14A263482DEB375100055EFC /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A263462DEB375100055EFC /* TeamCollectionViewCell.swift */; };
 		14A263492DEB375100055EFC /* TeamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A263472DEB375100055EFC /* TeamCollectionViewCell.xib */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		143D0A662DEC3BBB00F5464F /* AllTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeams.swift; sourceTree = "<group>"; };
 		14A263422DEB35B700055EFC /* LeagueDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeagueDetails.storyboard; sourceTree = "<group>"; };
 		14A263462DEB375100055EFC /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		14A263472DEB375100055EFC /* TeamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				14A263542DEB5D9C00055EFC /* UpcomingEventModel.swift */,
 				14A263562DEB66DC00055EFC /* LatestResultsModel .swift */,
+				143D0A662DEC3BBB00F5464F /* AllTeams.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				14A2634F2DEB37AA00055EFC /* LeagueDetailsCollectionViewController.swift in Sources */,
 				14A263552DEB5D9C00055EFC /* UpcomingEventModel.swift in Sources */,
 				14B25D5A2DE93FCB004788ED /* AllSportsPresenter.swift in Sources */,
+				143D0A672DEC3BBB00F5464F /* AllTeams.swift in Sources */,
 				14B25D1A2DE93EBB004788ED /* AppDelegate.swift in Sources */,
 				14B25D242DE93EBB004788ED /* SQUADRA_SPORTS_APP.xcdatamodeld in Sources */,
 				14B25D1C2DE93EBB004788ED /* SceneDelegate.swift in Sources */,

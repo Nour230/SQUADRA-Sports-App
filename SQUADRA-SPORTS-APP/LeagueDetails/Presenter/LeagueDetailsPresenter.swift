@@ -24,9 +24,18 @@ class LeagueDetailsPresenter{
         }
     }
     
+    
     func getLatestResultsLeagueDetailsFromNetwork() {
         NetworkService.getLatestResultsLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
             self.leaguesDetailsCollectionView.displayLatestResultsLeagueDetails(res: res)
         }
     }
+    
+    func getAllTeamsFromNetwork() {
+        NetworkService.getAllTeamsDetails(sportName: sportName, leagueID: leagueID) { res in
+            self.leaguesDetailsCollectionView.displayAllTeams(res: res)
+        }
+    }
+    
+    
 }
