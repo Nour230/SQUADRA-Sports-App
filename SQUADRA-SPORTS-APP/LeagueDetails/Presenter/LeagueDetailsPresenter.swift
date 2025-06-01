@@ -8,20 +8,40 @@
 import Foundation
 
 class LeagueDetailsPresenter{
-    var sportName: String
+    var sportName :String
     var leagueID :Int
-    var leaguesDetailsCollectionView: LeagueDetailsProtocol
+    var headerLeague :LeagueModel
+    var leaguesDetailsCollectionView :LeagueDetailsProtocol
     
-    init(sportName: String, leagueID: Int, leaguesDetailsCollectionView: LeagueDetailsProtocol) {
+    init(sportName: String, leagueID: Int, headerLeague: LeagueModel, leaguesDetailsCollectionView: LeagueDetailsProtocol) {
         self.sportName = sportName
         self.leagueID = leagueID
+        self.headerLeague = headerLeague
         self.leaguesDetailsCollectionView = leaguesDetailsCollectionView
     }
     
+    func sendSelectedHeaderLeague() {
+        self.leaguesDetailsCollectionView.displayHeaderLeagueDetails(res: headerLeague)
+    }
     
-    func getLeagueDetailsFromNetwork() {
-        NetworkService.getLeagueDetails(sportName: sportName, leagueID: leagueID ) { res in
-            self.leaguesDetailsCollectionView.displayLeagueDetails(res: res)
+    func getUpcomingLeagueDetailsFromNetwork() {
+        NetworkService.getUpcomingLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
+            self.leaguesDetailsCollectionView.displayUpcomingLeagueDetails(res: res)
         }
     }
+    
+    
+    func getLatestResultsLeagueDetailsFromNetwork() {
+        NetworkService.getLatestResultsLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
+            self.leaguesDetailsCollectionView.displayLatestResultsLeagueDetails(res: res)
+        }
+    }
+    
+    func getAllTeamsFromNetwork() {
+        NetworkService.getAllTeamsDetails(sportName: sportName, leagueID: leagueID) { res in
+            self.leaguesDetailsCollectionView.displayAllTeams(res: res)
+        }
+    }
+    
+    
 }

@@ -24,8 +24,17 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="center" reuseIdentifier="Header" id="49I-e8-tkM">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zss-HA-bqi">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="393" height="150"/>
+                            </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="UpcomingEvents" id="kEj-RA-g9W">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="175"/>
+                                <rect key="frame" x="0.0" y="160" width="393" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="P4S-nl-i00">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="175"/>
@@ -34,22 +43,22 @@
                                 <size key="customSize" width="393" height="175"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="center" reuseIdentifier="LatestResultsEvents" id="hAd-Ug-Rg8">
-                                <rect key="frame" x="0.0" y="185" width="393" height="361"/>
+                                <rect key="frame" x="0.0" y="345" width="393" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zpl-mJ-suQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="361"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="175"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="393" height="361"/>
+                                <size key="customSize" width="393" height="175"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="center" reuseIdentifier="Teams" id="jl2-Yl-afl">
-                                <rect key="frame" x="0.0" y="556" width="393" height="150"/>
+                                <rect key="frame" x="0.0" y="530" width="393" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gIy-a7-9PJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="175"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="393" height="150"/>
+                                <size key="customSize" width="393" height="175"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
