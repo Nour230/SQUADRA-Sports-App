@@ -8,15 +8,20 @@
 import UIKit
 
 protocol LeagueDetailsProtocol{
-    func displayLeagueDetails(res : UpcomingEventResponse)
+    func displayUpcomingLeagueDetails(res : UpcomingEventResponse)
+    func displayLatestResultsLeagueDetails(res : LatestResultsEventResponse)
+    func displayAllTeams(res: AllTeamsResponse)
 }
 
 private let reuseIdentifier = "Cell"
 class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueDetailsProtocol{
-    
+
     var leagueDetailsPresenter : LeagueDetailsPresenter!
     
     var upcomingEvents : [UpcomingEventModel] = []
+    var latestEvents : [LatestResultsEventModel] = []
+    var allTeams : [TeamModel] = []
+    var headerLeagueDetails : LatestResultsEventModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +43,38 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         let nib3 = UINib(nibName:"TeamCollectionViewCell", bundle: nil)
         self.collectionView.register(nib3, forCellWithReuseIdentifier:"Teams")
         
+        let nib4 = UINib(nibName:"HeaderCollectionViewCell", bundle: nil)
+        self.collectionView.register(nib4, forCellWithReuseIdentifier:"Header")
+        
         // Do any additional setup after loading the view.
-        leagueDetailsPresenter.getLeagueDetailsFromNetwork()
+        leagueDetailsPresenter.getUpcomingLeagueDetailsFromNetwork()
+        leagueDetailsPresenter.getLatestResultsLeagueDetailsFromNetwork()
+        leagueDetailsPresenter.getAllTeamsFromNetwork()
     }
 
-    func displayLeagueDetails(res : UpcomingEventResponse) {
+    func displayUpcomingLeagueDetails(res : UpcomingEventResponse) {
         DispatchQueue.main.async {
             self.upcomingEvents = res.result
             self.collectionView.reloadData()
         }
     }
+    
+    func displayLatestResultsLeagueDetails(res: LatestResultsEventResponse) {
+        DispatchQueue.main.async {
+            self.latestEvents = Array(res.result.prefix(10))
+            self.headerLeagueDetails = self.latestEvents.first
+            self.collectionView.reloadData()
+        }
+    }
+
+    
+    func displayAllTeams(res: AllTeamsResponse) {
+        DispatchQueue.main.async {
+            self.allTeams = res.result
+            self.collectionView.reloadData()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -58,6 +85,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     }
     */
     
+    func headerLeagueSection() -> NSCollectionLayoutSection{
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(420), heightDimension: .absolute(140))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 10, trailing: 0)
+        section.interGroupSpacing = 10
+        return section
+    }
+    
     func upcomingEventsSection() -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -65,7 +104,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 150, leading: 16, bottom: 10, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 10, trailing: 16)
         section.interGroupSpacing = 10
         return section
     }
@@ -73,10 +112,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     func latestResultsEventsSection()->NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(225))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(375), heightDimension: .absolute(175))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 14, bottom: 10, trailing: 16)
         section.interGroupSpacing = 10
         return section
     }
@@ -93,43 +132,83 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         return section
     }
     
-    func createLayout()-> UICollectionViewLayout{
-        return UICollectionViewCompositionalLayout{ sectionIndex , _ in
-            switch sectionIndex{
-            case 0 :
+    func createLayout() -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self.headerLeagueSection()
+            case 1:
                 return self.upcomingEventsSection()
-            case 1 :
+            case 2:
                 return self.latestResultsEventsSection()
-            default :
+            case 3:
                 return self.teamsSection()
+            default:
+                return nil
             }
         }
     }
 
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return upcomingEvents.count
+            return headerLeagueDetails == nil ? 0 : 1
         case 1:
-            return 10
+            return upcomingEvents.count
         case 2:
-            return 5
+            return latestEvents.count
+        case 3:
+            return allTeams.count
         default:
             return 0
         }
     }
 
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
-            // Configure the cell
+        // Configure the cell
         case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Header", for: indexPath) as? HeaderCollectionViewCell else {
+                fatalError("Could not dequeue cell")
+            }
+            let headerLeagueDetails = headerLeagueDetails!
+            
+            if let headerLeagueLogo = headerLeagueDetails.leagueLogo,
+               let url = URL(string: headerLeagueLogo) {
+                cell.headerLeagueImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+            } else {
+                cell.headerLeagueImageView.image = UIImage(named: "UnkownLeague")
+            }
+            cell.headerLeagueNameLabel.text = headerLeagueDetails.leagueName
+            if let headerLeagueCountryName = headerLeagueDetails.countryName {
+                cell.headerLeagueCountryLabel.text = headerLeagueCountryName
+            } else {
+                cell.headerLeagueCountryLabel.text = "Unkown Country"
+            }
+            if let headerLeagueSeason = headerLeagueDetails.leagueSeason {
+                cell.headerLeagueSeasonLabel.text = headerLeagueSeason
+            } else {
+                cell.headerLeagueSeasonLabel.text = "Unkown Season"
+            }
+            if let headerLeagueCountryLogo = headerLeagueDetails.countryLogo,
+               let url = URL(string: headerLeagueCountryLogo) {
+                cell.headerCountryImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownFlag"))
+            } else {
+                cell.headerCountryImageView.image = UIImage(named: "UnkownFlag")
+            }
+            
+            return cell
+            
+        case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEvents", for: indexPath) as? EventCollectionViewCell else {
                 fatalError("Could not dequeue cell")
             }
@@ -172,8 +251,64 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
             return cell
             
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestResultsEvents", for: indexPath) as? EventCollectionViewCell else {
+                fatalError("Could not dequeue cell")
+            }
+            let event = latestEvents[indexPath.item]
+            
+            if let homeTeamLogo = event.homeTeamLogo,
+               let url = URL(string: homeTeamLogo) {
+                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+            } else {
+                cell.homeTeamImageView.image = UIImage(named: "UnkownLeague")
+            }
+            if let homeTeamName = event.homeTeamName {
+                cell.homeTeamLabel.text = homeTeamName
+            } else {
+                cell.homeTeamLabel.text = "Unkown Team"
+            }
+            
+            if let awayTeamLogo = event.awayTeamLogo,
+               let url = URL(string: awayTeamLogo) {
+                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+            } else {
+                cell.awayTeamImageView.image = UIImage(named: "UnkownLeague")
+            }
+            if let awayTeamName = event.awayTeamName {
+                cell.awayTeamLabel.text = awayTeamName
+            } else {
+                cell.awayTeamLabel.text = "Unkown Team"
+            }
+            
+            if let eventScore = event.result {
+                cell.timeOrScoreLabel.text = eventScore
+            } else {
+                cell.timeOrScoreLabel.text = "-"
+            }
+            if let eventDate = event.eventDate {
+                cell.dateLabel.text = eventDate
+            } else {
+                cell.dateLabel.text = "Unkown Date"
+            }
+            
+            return cell
+            
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEvents", for: indexPath) as? EventCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell
+            let team = allTeams[indexPath.item]
+            
+            if let teamLogo = team.teamLogo,
+               let url = URL(string: teamLogo) {
+                cell?.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownLeague"))
+            } else {
+                cell?.teamImageView.image = UIImage(named: "UnkownLeague")
+            }
+            if let teamName = team.teamName {
+                cell?.teamNameLable.text = teamName
+            } else {
+                cell?.teamNameLable.text = "Unkown Team"
+            }
             return cell!
         }
     
