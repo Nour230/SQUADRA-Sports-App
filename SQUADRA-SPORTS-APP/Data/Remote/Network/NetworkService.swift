@@ -80,4 +80,52 @@ class NetworkService {
                 }
             }
     }
+    
+    static func getTennisPlayerbyLeagueID(leagueId: Int, handler: @escaping (TennisPlayerResponse)->Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let currentDate = Date()
+        let oneYearBefore = Calendar.current.date(byAdding: .year, value: 1, to: currentDate)!
+
+        let fromDate = dateFormatter.string(from: oneYearBefore)
+        let toDate = dateFormatter.string(from: currentDate)
+        
+        AF.request("https://apiv2.allsportsapi.com/tennis/?met=Fixtures&from=2024-05-31&to=2025-05-31&leagueId=\(leagueId)&APIkey=\(APIKeys.NourAPIKey)")
+            .responseDecodable(of: TennisPlayerResponse.self) { response in
+                switch response.result {
+                case .success(let items):
+                    handler(items)
+                    print("------------------------\(items.result[0])")
+                case .failure(let error):
+                    print("error is : \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    
+
+    
+    static func getAllTennisPlayer( handler: @escaping (TennisPlayerResponse)->Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let currentDate = Date()
+        let oneYearBefore = Calendar.current.date(byAdding: .year, value: 1, to: currentDate)!
+
+        let fromDate = dateFormatter.string(from: oneYearBefore)
+        let toDate = dateFormatter.string(from: currentDate)
+        
+        AF.request("https://apiv2.allsportsapi.com/tennis/?met=Fixtures&from=2025-06-02&to=2026-06-02&APIkey=\(APIKeys.NourAPIKey)")
+            .responseDecodable(of: TennisPlayerResponse.self) { response in
+                switch response.result {
+                case .success(let items):
+                    handler(items)
+                    print("------------------------\(items.result[0])")
+                case .failure(let error):
+                    print("error is : \(error.localizedDescription)")
+                }
+            }
+    }
+    
 }
