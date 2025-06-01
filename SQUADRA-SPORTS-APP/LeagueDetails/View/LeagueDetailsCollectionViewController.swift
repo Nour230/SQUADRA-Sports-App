@@ -373,7 +373,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         case 2:
             header.titleLabel.text = "Latest Results Events"
         case 3:
-            header.titleLabel.text = "Teams"
             header.titleLabel.text = "League Teams"
         default:
             header.titleLabel.text = ""
