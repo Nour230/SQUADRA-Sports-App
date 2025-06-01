@@ -17,8 +17,8 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = "Leagues"
+
+        self.navigationItem.title = "\(leaguesPresenter.sportName.capitalized) Leagues"
 
         let nib = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "LeaguesCell")
@@ -84,7 +84,10 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
             let name = leaguesPresenter.sportName
             guard let leagueID = leaguesArray[indexPath.row].leagueID else { return }
             
-            let leagueDetailsPresenter = LeagueDetailsPresenter(sportName: name, leagueID: leagueID, leaguesDetailsCollectionView: leagueDetailsCollectionVC)
+            let headerLeague = leaguesArray[indexPath.row]
+            print(headerLeague)
+            
+            let leagueDetailsPresenter = LeagueDetailsPresenter(sportName: name, leagueID: leagueID, headerLeague: headerLeague, leaguesDetailsCollectionView: leagueDetailsCollectionVC)
             leagueDetailsCollectionVC.leagueDetailsPresenter = leagueDetailsPresenter
             navigationController?.pushViewController(leagueDetailsCollectionVC, animated: true)
         }
