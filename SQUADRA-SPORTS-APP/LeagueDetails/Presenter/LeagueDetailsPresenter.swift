@@ -8,14 +8,20 @@
 import Foundation
 
 class LeagueDetailsPresenter{
-    var sportName: String
+    var sportName :String
     var leagueID :Int
-    var leaguesDetailsCollectionView: LeagueDetailsProtocol
+    var headerLeague :LeagueModel
+    var leaguesDetailsCollectionView :LeagueDetailsProtocol
     
-    init(sportName: String, leagueID: Int, leaguesDetailsCollectionView: LeagueDetailsProtocol) {
+    init(sportName: String, leagueID: Int, headerLeague: LeagueModel, leaguesDetailsCollectionView: LeagueDetailsProtocol) {
         self.sportName = sportName
         self.leagueID = leagueID
+        self.headerLeague = headerLeague
         self.leaguesDetailsCollectionView = leaguesDetailsCollectionView
+    }
+    
+    func sendSelectedHeaderLeague() {
+        self.leaguesDetailsCollectionView.displayHeaderLeagueDetails(res: headerLeague)
     }
     
     func getUpcomingLeagueDetailsFromNetwork() {
