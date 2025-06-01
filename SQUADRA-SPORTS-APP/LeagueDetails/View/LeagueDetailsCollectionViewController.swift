@@ -156,6 +156,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 10, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 16, trailing: 16)
         section.interGroupSpacing = 10
         addHeader(to: section)
         return section
@@ -169,6 +170,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 16, bottom: 8, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
         addHeader(to: section)
         return section
@@ -372,6 +374,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             header.titleLabel.text = "Latest Results Events"
         case 3:
             header.titleLabel.text = "Teams"
+            header.titleLabel.text = "League Teams"
         default:
             header.titleLabel.text = ""
         }
