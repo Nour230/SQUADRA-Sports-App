@@ -9,6 +9,9 @@ import UIKit
 import Kingfisher
 import Alamofire
 
+protocol LeaguesProtocol {
+    func renderLeaguesTableView(result: LeaguesResponse)
+}
 
 class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         
