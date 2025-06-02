@@ -48,6 +48,11 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     func updateFavButton() {
         let imageName = isFavorite! ? "heart.fill" : "heart"
         favouriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+        if(imageName == "heart.fill"){
+            favouriteButton.tintColor = .red
+        } else {
+            favouriteButton.tintColor = .black
+        }
     }
     
 }
