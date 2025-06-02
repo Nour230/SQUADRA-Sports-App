@@ -21,7 +21,5 @@ class LeaguesPresenter {
             self.leaguesTableView.renderLeaguesTableView(result: res)
         }
     }
-}
-protocol LeaguesProtocol {
-    func renderLeaguesTableView(result: LeaguesResponse)
+
 }

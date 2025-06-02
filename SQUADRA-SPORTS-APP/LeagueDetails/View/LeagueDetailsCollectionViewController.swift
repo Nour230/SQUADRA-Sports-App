@@ -17,10 +17,8 @@ protocol LeagueDetailsProtocol{
 }
 
 private let reuseIdentifier = "Cell"
-class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueDetailsProtocol{
+class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueDetailsProtocol , HeaderCollectionViewCellDelegate{
    
-    
-
     var leagueDetailsPresenter : LeagueDetailsPresenter!
     
     var headerLeagueDetails : LeagueModel!
@@ -114,6 +112,20 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             self.allTeams = res.result
             self.collectionView.reloadData()
         }
+    }
+    
+    func presentRemoveFromFavoritesAlert(completion: @escaping () -> Void) {
+        let alert = UIAlertController(title: "Remove From Favorites",
+                                      message: "Are You Sure Yow Want To Remove This League From Your Favourites ?",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+            completion()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     /*
@@ -282,6 +294,13 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             } else {
                 cell.headerCountryImageView.image = UIImage(named: "UnkownFlag")
             }
+            
+            
+            cell.leagueDetailsPresenter = self.leagueDetailsPresenter
+            cell.delegate = self
+            cell.isFavorite = leagueDetailsPresenter.getLeagueByID()
+            cell.updateFavButton()
+            print(cell.isFavorite!)
             
             return cell
             

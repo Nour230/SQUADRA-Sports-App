@@ -8,11 +8,11 @@
 import Foundation
 
 protocol LocalDataSourceProtocol{
-    func insertLeagueToDataBase(league: LeagueModel)
+    static func insertLeagueToDataBase(league: LeagueModel, sportName:String)
     
-    func getAllLeaguesFromDataBase()
+    static func getAllLeaguesFromDataBase() -> [CachedFavouritesModel]
     
-    func deleteLeagueFromDataBase(leagueid : Int)
+    static func deleteLeagueFromDataBase(leagueID : Int)
     
-    func getLeagueByID(leagueID :Int) -> Bool
+    static func getLeagueByID(leagueID :Int) -> Bool
 }

@@ -56,5 +56,15 @@ class LeagueDetailsPresenter{
         }
     }
     
+    func deleteFromDatabase() {
+        LocalDataScource.deleteLeagueFromDataBase(leagueID: leagueID)
+    }
     
+    func insertIntoDatabase() {
+        LocalDataScource.insertLeagueToDataBase(league: headerLeague, sportName: sportName)
+    }
+    
+    func getLeagueByID() -> Bool {
+        return LocalDataScource.getLeagueByID(leagueID: leagueID)
+    }
 }

@@ -72,6 +72,9 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <connections>
+                            <action selector="addToFavourites:" destination="gTV-IL-0wX" eventType="touchUpInside" id="UPH-mD-eUa"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -95,6 +98,7 @@
             </constraints>
             <size key="customSize" width="393" height="150"/>
             <connections>
+                <outlet property="favouriteButton" destination="Jtc-ao-Taa" id="MQY-sH-9kV"/>
                 <outlet property="headerCountryImageView" destination="o9N-c7-Xou" id="XGM-dI-iVK"/>
                 <outlet property="headerLeagueCountryLabel" destination="QBo-MQ-3nF" id="m2v-QX-bbd"/>
                 <outlet property="headerLeagueImageView" destination="hAL-uc-iso" id="ozd-uq-4Za"/>
