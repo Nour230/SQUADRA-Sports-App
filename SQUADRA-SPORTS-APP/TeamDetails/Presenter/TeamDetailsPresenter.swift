@@ -9,15 +9,17 @@ import Foundation
 
 class TeamDetailsPresenter {
     var selectedTeam :TeamModel
+    var sportName :String
     var teamDetailsTableView :TeamDetailsProtocol
     
-    init(selectedTeam: TeamModel, teamDetailsTableView: TeamDetailsProtocol) {
+    init(selectedTeam: TeamModel, sportName: String, teamDetailsTableView: TeamDetailsProtocol) {
         self.selectedTeam = selectedTeam
+        self.sportName = sportName
         self.teamDetailsTableView = teamDetailsTableView
     }
     
     func getTeamDetails(){
-        teamDetailsTableView.displayTeamDetails(res: selectedTeam)
+        teamDetailsTableView.displayTeamDetails(res: selectedTeam, sportName: sportName)
     }
     
 }

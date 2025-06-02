@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TeamDetailsProtocol {
-    func displayTeamDetails(res: TeamModel)
+    func displayTeamDetails(res: TeamModel, sportName: String)
 }
 
 class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TeamDetailsProtocol{
@@ -20,6 +20,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var teamDetailsPresenter : TeamDetailsPresenter!
     
     var team : TeamModel!
+    var sportName : String!
     
     var coachesArray : [Coach] = []
     var playersArray : [Player] = []
@@ -35,17 +36,34 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         let nib = UINib(nibName: "PlayerTableViewCell", bundle: nil)
         teamDetailsTableView.register(nib, forCellReuseIdentifier: "PlayerCell")
         
+        let nib2 = UINib(nibName: "CoachTableViewCell", bundle: nil)
+        teamDetailsTableView.register(nib2, forCellReuseIdentifier: "CoachCell")
+        
         teamDetailsPresenter.getTeamDetails()
     }
     
-    func displayTeamDetails(res: TeamModel) {
+    func displayTeamDetails(res: TeamModel, sportName: String) {
         DispatchQueue.main.async {
+            self.sportName = sportName
             self.team = res
             self.navigationItem.title = "\(self.team.teamName!) Team Details"
             self.teamNameLabel.text = self.team.teamName!
-            self.teamImageView.kf.setImage(with: URL(string: self.team.teamLogo!))
-            self.coachesArray = self.team.coaches!
-            self.playersArray = self.team.players!
+            
+            if let teamImageView = self.team.teamLogo {
+                self.teamImageView.kf.setImage(with: URL(string: teamImageView))
+            }else{
+                self.teamImageView.image = UIImage(named: "UnkownTeam")
+            }
+            if let coachesArray = self.team.coaches {
+                self.coachesArray = coachesArray
+            }else{
+                self.coachesArray = []
+            }
+            if let playersArray = self.team.players {
+                self.playersArray = playersArray
+            }else{
+                self.playersArray = []
+            }
             self.teamDetailsTableView.reloadData()
         }
     }
@@ -69,24 +87,18 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         switch indexPath.section {
             // Configure the cell
         case 0:
-            guard let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as? PlayerTableViewCell
+            guard let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "CoachCell", for: indexPath) as? CoachTableViewCell
             else {
                 fatalError("Could not dequeue cell")
             }
             let coach = coachesArray[indexPath.row]
             
-            cell.playerImageView.image = UIImage(named: "UnkownCoach")
+            cell.coachImageView.image = UIImage(named: "UnkownCoach")
             if let coachName = coach.coachName {
-                cell.playerNameLabel.text = coachName
+                cell.coachNameLabel.text = coachName
             } else {
-                cell.playerNameLabel.text = "Unkown Coach"
+                cell.coachNameLabel.text = "Unkown Coach"
             }
-            cell.playerAgeLabel.isHidden = true
-            cell.playerPositionLabel.isHidden = true
-            cell.playerNumberLabel.isHidden = true
-            cell.playerAgeIcon.isHidden = true
-            cell.playerPositionIcon.isHidden = true
-            cell.playerNumberIcon.isHidden = true
             
             return cell
             
@@ -140,15 +152,30 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         return 55
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.teamDetailsTableView.bounds.size.width, height: 40))
+        let label = UILabel(frame: CGRect(x: 5, y: -10, width: (self.teamDetailsTableView.bounds.size.width ) - 32, height: 30))
+        label.textColor = UIColor.black
+        label.font = UIFont(name: "System", size: 18)
+        
+        switch section{
         case 0:
-            return "Coaches"
-        case 1:
-            return "Players"
+            if(sportName == "football"){
+                label.text = "Coach"
+            } else {
+                label.isHidden = true
+            }
+            break
         default:
-            return nil
+            if(sportName == "football"){
+                label.text = "Players"
+            } else {
+                label.isHidden = true
+            }
+            break
         }
+        header.addSubview(label)
+        return header
     }
 
     /*

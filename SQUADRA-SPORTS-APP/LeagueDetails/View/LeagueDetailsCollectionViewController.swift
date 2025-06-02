@@ -294,17 +294,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 if let firstPlayerLogo = tennisEvent.eventFirstPlayerLogo,
                    let url = URL(string: firstPlayerLogo) {
-                    cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPerson"))
+                    cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPlayer"))
                 } else {
-                    cell.homeTeamImageView.image = UIImage(named: "UnkownPerson")
+                    cell.homeTeamImageView.image = UIImage(named: "UnkownPlayer")
                 }
                 cell.homeTeamLabel.text = tennisEvent.eventFirstPlayer ?? "Unknown Player"
                 
                 if let secondPlayerLogo = tennisEvent.eventScoundPlayerLogo,
                    let url = URL(string: secondPlayerLogo) {
-                    cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPerson"))
+                    cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPlayer"))
                 } else {
-                    cell.awayTeamImageView.image = UIImage(named: "UnkownPerson")
+                    cell.awayTeamImageView.image = UIImage(named: "UnkownPlayer")
                 }
                 cell.awayTeamLabel.text = tennisEvent.eventSecondPlayer ?? "Unknown Player"
                 
@@ -349,9 +349,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 if let playerImage = player.eventFirstPlayerLogo,
                    let url = URL(string: playerImage) {
-                    cell.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPerson"))
+                    cell.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPlayer"))
                 } else {
-                    cell.teamImageView.image = UIImage(named: "UnkownPerson")
+                    cell.teamImageView.image = UIImage(named: "UnkownPlayer")
                 }
                 cell.teamNameLable.text = player.eventFirstPlayer ?? "Unknown Player"
                 
@@ -434,12 +434,19 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let teamDetailsStoryboard = UIStoryboard(name: "TeamDetails", bundle: nil)
         if let teamDetailsTableVC = teamDetailsStoryboard.instantiateViewController(withIdentifier: "TeamDetails") as? TeamDetailsViewController {
+            switch(indexPath.section){
+            case 3 :
+                let selectedTeam = self.allTeams[indexPath.row]
+                let sportName = self.leagueDetailsPresenter.sportName
+                    
+                    let teamDetailsPresenter = TeamDetailsPresenter(selectedTeam: selectedTeam, sportName: sportName, teamDetailsTableView: teamDetailsTableVC)
+                    teamDetailsTableVC.teamDetailsPresenter = teamDetailsPresenter
+                self.navigationController?.pushViewController(teamDetailsTableVC, animated: true)
+                
+            default :
+                return
+            }
             
-            let selectedTeam = allTeams[indexPath.row]
-            
-            let teamDetailsPresenter = TeamDetailsPresenter(selectedTeam: selectedTeam, teamDetailsTableView: teamDetailsTableVC)
-            teamDetailsTableVC.teamDetailsPresenter = teamDetailsPresenter
-            navigationController?.pushViewController(teamDetailsTableVC, animated: true)
         }
     }
 
