@@ -43,6 +43,35 @@
             </objects>
             <point key="canvasLocation" x="167.17557251908397" y="-12.67605633802817"/>
         </scene>
+        <!--Favourites-->
+        <scene sceneID="ROi-Id-UFF">
+            <objects>
+                <tableViewController id="2gr-Eq-2r3" customClass="FavouritesTableViewController" customModule="SQUADRA_SPORTS_APP" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="eTd-Dx-dia">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" id="ENI-in-RdA">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ENI-in-RdA" id="cVW-7r-5hR">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2gr-Eq-2r3" id="JVs-5d-gXl"/>
+                            <outlet property="delegate" destination="2gr-Eq-2r3" id="wrR-yk-JDf"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="heart.fill" catalog="system" id="z9R-ZY-wMf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hfF-4O-FWn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="167" y="673"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="aLI-JD-VSo">
             <objects>
@@ -73,6 +102,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="bvt-jR-W7G" kind="relationship" relationship="viewControllers" id="AMR-yV-aFZ"/>
+                        <segue destination="2gr-Eq-2r3" kind="relationship" relationship="viewControllers" id="fAN-yP-7QP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5s-xJ-D2i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -81,6 +111,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="tennisball.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
