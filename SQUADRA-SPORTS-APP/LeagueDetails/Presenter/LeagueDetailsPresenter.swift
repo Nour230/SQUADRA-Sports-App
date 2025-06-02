@@ -61,7 +61,7 @@ class LeagueDetailsPresenter{
     }
     
     func insertIntoDatabase() {
-        LocalDataScource.insertLeagueToDataBase(league: headerLeague)
+        LocalDataScource.insertLeagueToDataBase(league: headerLeague, sportName: sportName)
     }
     
     func getLeagueByID() -> Bool {
