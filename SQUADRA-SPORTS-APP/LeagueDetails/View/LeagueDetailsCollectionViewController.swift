@@ -437,8 +437,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             switch(indexPath.section){
             case 3 :
                 let selectedTeam = self.allTeams[indexPath.row]
+                let sportName = self.leagueDetailsPresenter.sportName
                     
-                    let teamDetailsPresenter = TeamDetailsPresenter(selectedTeam: selectedTeam, teamDetailsTableView: teamDetailsTableVC)
+                    let teamDetailsPresenter = TeamDetailsPresenter(selectedTeam: selectedTeam, sportName: sportName, teamDetailsTableView: teamDetailsTableVC)
                     teamDetailsTableVC.teamDetailsPresenter = teamDetailsPresenter
                 self.navigationController?.pushViewController(teamDetailsTableVC, animated: true)
                 
