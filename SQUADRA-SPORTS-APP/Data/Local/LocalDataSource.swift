@@ -11,7 +11,7 @@ import UIKit
 
 class LocalDataScource : LocalDataSourceProtocol{
     
-    static func insertLeagueToDataBase(league: LeagueModel) {
+    static func insertLeagueToDataBase(league: LeagueModel , sportName:String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: "CashedFavourites", in: context) else { return }
@@ -21,6 +21,7 @@ class LocalDataScource : LocalDataSourceProtocol{
         managedObject.setValue(league.leagueID, forKey: "leagueID")
         managedObject.setValue(league.countryName, forKey: "countryName")
         managedObject.setValue(league.countryLogo, forKey: "countryLogo")
+        managedObject.setValue(sportName, forKey: "sportName")
         do {
             try context.save()
             print("Favorite status updated to saved")
@@ -41,6 +42,7 @@ class LocalDataScource : LocalDataSourceProtocol{
             if let result = res.first{
                 managedContext.delete(result)
                 print("League deleted from DataBase")
+                try managedContext.save()
             }
             else{
                 print("No Saved League with this ID")
@@ -72,22 +74,26 @@ class LocalDataScource : LocalDataSourceProtocol{
     }
 
     
-    static func getAllLeaguesFromDataBase() -> [LeagueModel] {
+    static func getAllLeaguesFromDataBase() -> [CachedFavouritesModel] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CashedFavourites")
         
-        var favouriteLeagues: [LeagueModel] = []
+        var favouriteLeagues: [CachedFavouritesModel] = []
         
         do {
             let results = try managedContext.fetch(fetchRequest)
             for item in results {
-                let favouriteLeagueObject = LeagueModel(
+                let league = LeagueModel(
                     leagueName: item.value(forKey: "leagueName") as? String ?? " ",
                     leagueLogo: item.value(forKey: "leagueLogo") as? String,
                     countryName: item.value(forKey: "countryName") as? String,
                     countryLogo: item.value(forKey: "countryLogo") as? String,
                     leagueID: item.value(forKey: "leagueID") as? Int
+                )
+                let favouriteLeagueObject = CachedFavouritesModel(
+                    leagueModel: league ,
+                    sportName:item.value(forKey: "sportName") as? String
                 )
                 favouriteLeagues.append(favouriteLeagueObject)
             }
