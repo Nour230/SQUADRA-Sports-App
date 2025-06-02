@@ -92,7 +92,7 @@
         <!--Sports Categories-->
         <scene sceneID="zhI-BN-I6T">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wWA-Bn-BJw" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wWA-Bn-BJw" customClass="TabBarViewController" customModule="SQUADRA_SPORTS_APP" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Sports Categories" id="CEm-sg-y8d"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="es8-ZN-lO2">
