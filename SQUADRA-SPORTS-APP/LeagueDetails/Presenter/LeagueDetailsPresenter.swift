@@ -32,14 +32,27 @@ class LeagueDetailsPresenter{
     
     
     func getLatestResultsLeagueDetailsFromNetwork() {
-        NetworkService.getLatestResultsLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
-            self.leaguesDetailsCollectionView.displayLatestResultsLeagueDetails(res: res)
-        }
+        if(sportName == "tennis"){
+            NetworkService.getTennisPlayerbyLeagueID(leagueId: leagueID){
+                res in
+                self.leaguesDetailsCollectionView.displatAllResentTennisEvents(res: res)
+            }
+            }else{
+                NetworkService.getLatestResultsLeagueDetails(sportName: sportName, leagueID: leagueID) { res in
+                    self.leaguesDetailsCollectionView.displayLatestResultsLeagueDetails(res: res)
+                }
+            }
     }
     
     func getAllTeamsFromNetwork() {
-        NetworkService.getAllTeamsDetails(sportName: sportName, leagueID: leagueID) { res in
-            self.leaguesDetailsCollectionView.displayAllTeams(res: res)
+        if(sportName == "tennis"){
+            NetworkService.getAllTennisPlayer{ res in
+                self.leaguesDetailsCollectionView.displayAllTennisPlayers(res: res)
+            }
+        }else{
+            NetworkService.getAllTeamsDetails(sportName: sportName, leagueID: leagueID) { res in
+                self.leaguesDetailsCollectionView.displayAllTeams(res: res)
+            }
         }
     }
     

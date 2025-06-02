@@ -12,10 +12,14 @@ protocol LeagueDetailsProtocol{
     func displayLatestResultsLeagueDetails(res : LatestResultsEventResponse)
     func displayAllTeams(res: AllTeamsResponse)
     func displayHeaderLeagueDetails(res : LeagueModel)
+    func displayAllTennisPlayers(res : TennisPlayerResponse)
+    func displatAllResentTennisEvents(res : TennisPlayerResponse)
 }
 
 private let reuseIdentifier = "Cell"
 class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueDetailsProtocol{
+   
+    
 
     var leagueDetailsPresenter : LeagueDetailsPresenter!
     
@@ -24,6 +28,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     var latestEvents : [LatestResultsEventModel] = []
     
     var allTeams : [TeamModel] = []
+    var allResentTennisEvents : [TennisPlayerModel] = []
+    var allTennisPlayers : [TennisPlayerModel] = []
     
     var headerLeagueSeason : String!
     
@@ -60,6 +66,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         leagueDetailsPresenter.getUpcomingLeagueDetailsFromNetwork()
         leagueDetailsPresenter.getLatestResultsLeagueDetailsFromNetwork()
         leagueDetailsPresenter.getAllTeamsFromNetwork()
+        
+    }
+    
+    func displatAllResentTennisEvents(res: TennisPlayerResponse) {
+        DispatchQueue.main.async {
+            self.allResentTennisEvents = Array(res.result.dropFirst(30).prefix(30))
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    func displayAllTennisPlayers(res: TennisPlayerResponse) {
+        DispatchQueue.main.async {
+            self.allTennisPlayers = Array(res.result.dropFirst(30).prefix(30))
+            self.collectionView.reloadData()
+        }
     }
     
     func displayHeaderLeagueDetails(res: LeagueModel) {
@@ -178,17 +200,30 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     
     func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
-            switch sectionIndex {
-            case 0:
-                return self.headerLeagueSection()
-            case 1:
-                return self.upcomingEventsSection()
-            case 2:
-                return self.latestResultsEventsSection()
-            case 3:
-                return self.teamsSection()
-            default:
-                return nil
+            if self.leagueDetailsPresenter.sportName == "tennis" {
+                switch sectionIndex {
+                case 0:
+                    return self.headerLeagueSection()
+                case 1:
+                    return self.latestResultsEventsSection() // For recent tennis events
+                case 2:
+                    return self.teamsSection() // For tennis players (reusing teams layout)
+                default:
+                    return nil
+                }
+            } else {
+                switch sectionIndex {
+                case 0:
+                    return self.headerLeagueSection()
+                case 1:
+                    return self.upcomingEventsSection()
+                case 2:
+                    return self.latestResultsEventsSection()
+                case 3:
+                    return self.teamsSection()
+                default:
+                    return nil
+                }
             }
         }
     }
@@ -197,7 +232,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return leagueDetailsPresenter.sportName == "tennis" ? 3 : 4
     }
 
 
@@ -206,9 +241,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         case 0:
             return headerLeagueDetails == nil ? 0 : 1
         case 1:
-            return upcomingEvents.count
+            if leagueDetailsPresenter.sportName == "tennis" {
+                return allResentTennisEvents.count
+            } else {
+                return upcomingEvents.count
+            }
         case 2:
-            return latestEvents.count
+            if leagueDetailsPresenter.sportName == "tennis" {
+                return allTennisPlayers.count
+            } else {
+                return latestEvents.count
+            }
         case 3:
             return allTeams.count
         default:
@@ -218,7 +261,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
-        // Configure the cell
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Header", for: indexPath) as? HeaderCollectionViewCell else {
                 fatalError("Could not dequeue cell")
@@ -232,11 +274,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 cell.headerLeagueImageView.image = UIImage(named: "UnkownLeague")
             }
             cell.headerLeagueNameLabel.text = headerLeagueDetails.leagueName
-            if let headerLeagueCountryName = headerLeagueDetails.countryName {
-                cell.headerLeagueCountryLabel.text = headerLeagueCountryName
-            } else {
-                cell.headerLeagueCountryLabel.text = "Unkown Country"
-            }
+            cell.headerLeagueCountryLabel.text = headerLeagueDetails.countryName ?? "Unkown Country"
             cell.headerLeagueSeasonLabel.text = headerLeagueSeason ?? "N/A"
             if let headerLeagueCountryLogo = headerLeagueDetails.countryLogo,
                let url = URL(string: headerLeagueCountryLogo) {
@@ -248,109 +286,121 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             return cell
             
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEvents", for: indexPath) as? EventCollectionViewCell else {
-                fatalError("Could not dequeue cell")
-            }
-            let event = upcomingEvents[indexPath.item]
-            
-            if let homeTeamLogo = event.homeTeamLogo,
-               let url = URL(string: homeTeamLogo) {
-                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+            if leagueDetailsPresenter.sportName == "tennis" {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestResultsEvents", for: indexPath) as? EventCollectionViewCell else {
+                    fatalError("Could not dequeue cell")
+                }
+                let tennisEvent = allResentTennisEvents[indexPath.item]
+                
+                if let firstPlayerLogo = tennisEvent.eventFirstPlayerLogo,
+                   let url = URL(string: firstPlayerLogo) {
+                    cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPerson"))
+                } else {
+                    cell.homeTeamImageView.image = UIImage(named: "UnkownPerson")
+                }
+                cell.homeTeamLabel.text = tennisEvent.eventFirstPlayer ?? "Unknown Player"
+                
+                if let secondPlayerLogo = tennisEvent.eventScoundPlayerLogo,
+                   let url = URL(string: secondPlayerLogo) {
+                    cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPerson"))
+                } else {
+                    cell.awayTeamImageView.image = UIImage(named: "UnkownPerson")
+                }
+                cell.awayTeamLabel.text = tennisEvent.eventSecondPlayer ?? "Unknown Player"
+                
+                cell.timeOrScoreLabel.text = tennisEvent.eventFinalResult ?? "-"
+                cell.dateLabel.text = tennisEvent.eventDate ?? "Unknown Date"
+                
+                return cell
             } else {
-                cell.homeTeamImageView.image = UIImage(named: "UnkownTeam")
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEvents", for: indexPath) as? EventCollectionViewCell else {
+                    fatalError("Could not dequeue cell")
+                }
+                let event = upcomingEvents[indexPath.item]
+                
+                if let homeTeamLogo = event.homeTeamLogo,
+                   let url = URL(string: homeTeamLogo) {
+                    cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+                } else {
+                    cell.homeTeamImageView.image = UIImage(named: "UnkownTeam")
+                }
+                cell.homeTeamLabel.text = event.eventHomeTeam ?? "Unkown Team"
+                
+                if let awayTeamLogo = event.awayTeamLogo,
+                   let url = URL(string: awayTeamLogo) {
+                    cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+                } else {
+                    cell.awayTeamImageView.image = UIImage(named: "UnkownTeam")
+                }
+                cell.awayTeamLabel.text = event.eventAwayTeam ?? "Unkown Team"
+                
+                cell.timeOrScoreLabel.text = event.eventTime ?? "Unkown Time"
+                cell.dateLabel.text = event.eventDate ?? "Unkown Date"
+                
+                return cell
             }
-            if let homeTeamName = event.eventHomeTeam {
-                cell.homeTeamLabel.text = homeTeamName
-            } else {
-                cell.homeTeamLabel.text = "Unkown Team"
-            }
-            
-            if let awayTeamLogo = event.awayTeamLogo,
-               let url = URL(string: awayTeamLogo) {
-                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
-            } else {
-                cell.awayTeamImageView.image = UIImage(named: "UnkownTeam")
-            }
-            if let awayTeamName = event.eventAwayTeam {
-                cell.awayTeamLabel.text = awayTeamName
-            } else {
-                cell.awayTeamLabel.text = "Unkown Team"
-            }
-            
-            if let eventTime = event.eventTime {
-                cell.timeOrScoreLabel.text = eventTime
-            } else {
-                cell.timeOrScoreLabel.text = "Unkown Time"
-            }
-            if let eventDate = event.eventDate {
-                cell.dateLabel.text = eventDate
-            } else {
-                cell.dateLabel.text = "Unkown Date"
-            }
-            
-            return cell
             
         case 2:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestResultsEvents", for: indexPath) as? EventCollectionViewCell else {
-                fatalError("Could not dequeue cell")
-            }
-            let event = latestEvents[indexPath.item]
-            
-            if let homeTeamLogo = event.homeTeamLogo,
-               let url = URL(string: homeTeamLogo) {
-                cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+            if leagueDetailsPresenter.sportName == "tennis" {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell else {
+                    fatalError("Could not dequeue cell")
+                }
+                let player = allTennisPlayers[indexPath.item]
+                
+                if let playerImage = player.eventFirstPlayerLogo,
+                   let url = URL(string: playerImage) {
+                    cell.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownPerson"))
+                } else {
+                    cell.teamImageView.image = UIImage(named: "UnkownPerson")
+                }
+                cell.teamNameLable.text = player.eventFirstPlayer ?? "Unknown Player"
+                
+                return cell
             } else {
-                cell.homeTeamImageView.image = UIImage(named: "UnkownTeam")
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestResultsEvents", for: indexPath) as? EventCollectionViewCell else {
+                    fatalError("Could not dequeue cell")
+                }
+                let event = latestEvents[indexPath.item]
+                
+                if let homeTeamLogo = event.homeTeamLogo,
+                   let url = URL(string: homeTeamLogo) {
+                    cell.homeTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+                } else {
+                    cell.homeTeamImageView.image = UIImage(named: "UnkownTeam")
+                }
+                cell.homeTeamLabel.text = event.homeTeamName ?? "Unkown Team"
+                
+                if let awayTeamLogo = event.awayTeamLogo,
+                   let url = URL(string: awayTeamLogo) {
+                    cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+                } else {
+                    cell.awayTeamImageView.image = UIImage(named: "UnkownTeam")
+                }
+                cell.awayTeamLabel.text = event.awayTeamName ?? "Unkown Team"
+                
+                cell.timeOrScoreLabel.text = event.result ?? "-"
+                cell.dateLabel.text = event.eventDate ?? "Unkown Date"
+                
+                return cell
             }
-            if let homeTeamName = event.homeTeamName {
-                cell.homeTeamLabel.text = homeTeamName
-            } else {
-                cell.homeTeamLabel.text = "Unkown Team"
-            }
-            
-            if let awayTeamLogo = event.awayTeamLogo,
-               let url = URL(string: awayTeamLogo) {
-                cell.awayTeamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
-            } else {
-                cell.awayTeamImageView.image = UIImage(named: "UnkownTeam")
-            }
-            if let awayTeamName = event.awayTeamName {
-                cell.awayTeamLabel.text = awayTeamName
-            } else {
-                cell.awayTeamLabel.text = "Unkown Team"
-            }
-            
-            if let eventScore = event.result {
-                cell.timeOrScoreLabel.text = eventScore
-            } else {
-                cell.timeOrScoreLabel.text = "-"
-            }
-            if let eventDate = event.eventDate {
-                cell.dateLabel.text = eventDate
-            } else {
-                cell.dateLabel.text = "Unkown Date"
-            }
-            
-            return cell
             
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell else {
+                fatalError("Could not dequeue cell")
+            }
             let team = allTeams[indexPath.item]
             
             if let teamLogo = team.teamLogo,
                let url = URL(string: teamLogo) {
-                cell?.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
+                cell.teamImageView.kf.setImage(with: url, placeholder: UIImage(named: "UnkownTeam"))
             } else {
-                cell?.teamImageView.image = UIImage(named: "UnkownTeam")
+                cell.teamImageView.image = UIImage(named: "UnkownTeam")
             }
-            if let teamName = team.teamName {
-                cell?.teamNameLable.text = teamName
-            } else {
-                cell?.teamNameLable.text = "Unkown Team"
-            }
-            return cell!
+            cell.teamNameLable.text = team.teamName ?? "Unkown Team"
+            
+            return cell
+            
         }
-    
     }
     
     override func collectionView(_ collectionView: UICollectionView,
@@ -368,17 +418,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         }
         
         switch indexPath.section {
-        case 1:
-            header.titleLabel.text = "Upcoming Events"
-        case 2:
-            header.titleLabel.text = "Latest Results Events"
-        case 3:
-            header.titleLabel.text = "League Teams"
-        default:
-            header.titleLabel.text = ""
-        }
-        
-        return header
+            case 1:
+                header.titleLabel.text = leagueDetailsPresenter.sportName == "tennis" ? "Recent Tennis Events" : "Upcoming Events"
+            case 2:
+                header.titleLabel.text = leagueDetailsPresenter.sportName == "tennis" ? "Tennis Players" : "Latest Results"
+            case 3:
+                header.titleLabel.text = "League Teams"
+            default:
+                header.titleLabel.text = ""
+            }
+            
+            return header
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
