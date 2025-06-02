@@ -35,6 +35,9 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         let nib = UINib(nibName: "PlayerTableViewCell", bundle: nil)
         teamDetailsTableView.register(nib, forCellReuseIdentifier: "PlayerCell")
         
+        let nib2 = UINib(nibName: "CoachTableViewCell", bundle: nil)
+      //  teamDetailsTableView.register(nib2, forCellReuseIdentifier: "")
+        
         teamDetailsPresenter.getTeamDetails()
     }
     
@@ -44,8 +47,17 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             self.navigationItem.title = "\(self.team.teamName!) Team Details"
             self.teamNameLabel.text = self.team.teamName!
             self.teamImageView.kf.setImage(with: URL(string: self.team.teamLogo!))
-            self.coachesArray = self.team.coaches!
-            self.playersArray = self.team.players!
+            if let coachesArray = self.team.coaches {
+                self.coachesArray = coachesArray
+            }else{
+                self.coachesArray = []
+            }
+            
+            if let playersArray = self.team.players {
+                self.playersArray = playersArray
+            }else{
+                self.playersArray = []
+            }
             self.teamDetailsTableView.reloadData()
         }
     }
@@ -69,24 +81,18 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         switch indexPath.section {
             // Configure the cell
         case 0:
-            guard let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as? PlayerTableViewCell
+            guard let cell = teamDetailsTableView.dequeueReusableCell(withIdentifier: "", for: indexPath) as? CoachTableViewCell
             else {
                 fatalError("Could not dequeue cell")
             }
             let coach = coachesArray[indexPath.row]
             
-            cell.playerImageView.image = UIImage(named: "UnkownCoach")
+            cell.coachImageView.image = UIImage(named: "UnkownCoach")
             if let coachName = coach.coachName {
-                cell.playerNameLabel.text = coachName
+                cell.coachNameLabel.text = coachName
             } else {
-                cell.playerNameLabel.text = "Unkown Coach"
+                cell.coachNameLabel.text = "Unkown Coach"
             }
-            cell.playerAgeLabel.isHidden = true
-            cell.playerPositionLabel.isHidden = true
-            cell.playerNumberLabel.isHidden = true
-            cell.playerAgeIcon.isHidden = true
-            cell.playerPositionIcon.isHidden = true
-            cell.playerNumberIcon.isHidden = true
             
             return cell
             
@@ -149,6 +155,25 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         default:
             return nil
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.teamDetailsTableView.bounds.size.width, height: 40))
+        let label = UILabel(frame: CGRect(x: 5, y: -10, width: (self.teamDetailsTableView.bounds.size.width ) - 32, height: 30))
+        label.textColor = UIColor.black
+        label.font = UIFont(name: "System", size: 18)
+        
+        switch section{
+        case 0:
+            label.text = "Coach"
+            break
+        default:
+            label.text = "Players"
+            break
+        }
+        
+        header.addSubview(label)
+        return header
     }
 
     /*
