@@ -384,8 +384,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 return cell
             }
             
-        default
-            :
+        default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell else {
                 fatalError("Could not dequeue cell")
             }
