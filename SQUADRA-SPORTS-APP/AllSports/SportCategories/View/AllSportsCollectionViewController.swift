@@ -120,7 +120,7 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
             let leaguesPresenter = LeaguesPresenter(leaguesTableView: leaguesTableVC, sportName: sportName)
             leaguesTableVC.leaguesPresenter = leaguesPresenter
             
-            NetworkManager.isInternetAvailable { isConnected in
+            NetworkManager.isInternetAvailable{ isConnected in
                 DispatchQueue.main.async {
                     if isConnected {
                         self.navigationController?.pushViewController(leaguesTableVC, animated: true)

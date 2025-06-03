@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NetworkService {
+class NetworkService :NetworkServiceProtocol{
     
     static func getLeagues(sportName: String, handler: @escaping (LeaguesResponse)->Void) {
         AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Leagues&APIkey=\(APIKeys.NourAPIKey)")

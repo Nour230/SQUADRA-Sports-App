@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "6EFAFDDF-5AD7-4E89-9B01-E625AEC48882",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:SQUADRA-SPORTS-APP.xcodeproj",
+      "identifier" : "14B25D152DE93EBB004788ED",
+      "name" : "SQUADRA-SPORTS-APP"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:SQUADRA-SPORTS-APP.xcodeproj",
+        "identifier" : "14B25D2E2DE93EBE004788ED",
+        "name" : "SQUADRA-SPORTS-APPTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:SQUADRA-SPORTS-APP.xcodeproj",
+        "identifier" : "14B25D382DE93EBE004788ED",
+        "name" : "SQUADRA-SPORTS-APPUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
