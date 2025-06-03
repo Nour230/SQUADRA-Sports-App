@@ -92,7 +92,22 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
             
             let leagueDetailsPresenter = LeagueDetailsPresenter(sportName: name, leagueID: leagueID, headerLeague: headerLeague, leaguesDetailsCollectionView: leagueDetailsCollectionVC)
             leagueDetailsCollectionVC.leagueDetailsPresenter = leagueDetailsPresenter
-            navigationController?.pushViewController(leagueDetailsCollectionVC, animated: true)
+            
+            NetworkManager.isInternetAvailable { isConnected in
+                DispatchQueue.main.async {
+                    if isConnected {
+                        self.navigationController?.pushViewController(leagueDetailsCollectionVC, animated: true)
+                    } else {
+                        let alert = UIAlertController(
+                            title: "No Internet Connection",
+                            message: "Check Your Internet Connection!",
+                            preferredStyle: .alert
+                        )
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(alert, animated: true)
+                    }
+                }
+            }
         }
     }
     /*

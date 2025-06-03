@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1404281B2DEF1FEC00538C3B /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 1404281A2DEF1FEC00538C3B /* Reachability */; };
+		1404281E2DEF21B900538C3B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404281D2DEF21B900538C3B /* NetworkManager.swift */; };
 		143D0A672DEC3BBB00F5464F /* AllTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D0A662DEC3BBB00F5464F /* AllTeams.swift */; };
 		1462AE032DEC9957002E52C2 /* TeamDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1462AE022DEC9957002E52C2 /* TeamDetails.storyboard */; };
 		1462AE072DEC998B002E52C2 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462AE052DEC998B002E52C2 /* PlayerTableViewCell.swift */; };
@@ -79,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1404281D2DEF21B900538C3B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		143D0A662DEC3BBB00F5464F /* AllTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeams.swift; sourceTree = "<group>"; };
 		1462AE022DEC9957002E52C2 /* TeamDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamDetails.storyboard; sourceTree = "<group>"; };
 		1462AE052DEC998B002E52C2 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F36FFE2DEA5A9200F4687F /* Kingfisher in Frameworks */,
+				1404281B2DEF1FEC00538C3B /* Reachability in Frameworks */,
 				14F36FF92DEA59F300F4687F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1404281C2DEF219B00538C3B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1404281D2DEF21B900538C3B /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		1462AE002DEC9912002E52C2 /* TeamDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +515,7 @@
 		14F370142DEA631400F4687F /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				1404281C2DEF219B00538C3B /* Network */,
 				14F370162DEA633500F4687F /* Enums */,
 			);
 			path = Utilites;
@@ -545,6 +558,7 @@
 			packageProductDependencies = (
 				14F36FF82DEA59F300F4687F /* Alamofire */,
 				14F36FFD2DEA5A9200F4687F /* Kingfisher */,
+				1404281A2DEF1FEC00538C3B /* Reachability */,
 			);
 			productName = "SQUADRA-SPORTS-APP";
 			productReference = 14B25D162DE93EBB004788ED /* SQUADRA-SPORTS-APP.app */;
@@ -621,6 +635,7 @@
 			packageReferences = (
 				14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				14F36FFC2DEA5A9200F4687F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				140428192DEF1FEC00538C3B /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 14B25D172DE93EBB004788ED /* Products */;
 			projectDirPath = "";
@@ -692,6 +707,7 @@
 				147D59152DEDAC8000E73181 /* CoachTableViewCell.swift in Sources */,
 				14B25D5A2DE93FCB004788ED /* AllSportsPresenter.swift in Sources */,
 				143D0A672DEC3BBB00F5464F /* AllTeams.swift in Sources */,
+				1404281E2DEF21B900538C3B /* NetworkManager.swift in Sources */,
 				1462AE072DEC998B002E52C2 /* PlayerTableViewCell.swift in Sources */,
 				147D59182DEDC65100E73181 /* FavouritesTableViewController.swift in Sources */,
 				14B25D1A2DE93EBB004788ED /* AppDelegate.swift in Sources */,
@@ -1046,6 +1062,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		140428192DEF1FEC00538C3B /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = exactVersion;
+				version = 5.1.0;
+			};
+		};
 		14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1065,6 +1089,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1404281A2DEF1FEC00538C3B /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 140428192DEF1FEC00538C3B /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		14F36FF82DEA59F300F4687F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */;
