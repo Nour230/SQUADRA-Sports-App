@@ -15,6 +15,7 @@ protocol AllSportsProtocol{
 
 class AllSportsCollectionViewController: UICollectionViewController ,UICollectionViewDelegateFlowLayout , AllSportsProtocol{
     
+    var sportsPresenter : AllSportsPresenter!
     var sportsData : [AllSportsModel] = []
     
     override func viewDidLoad() {
@@ -29,7 +30,7 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
         self.collectionView.register(nib, forCellWithReuseIdentifier:"sportsCell")
         // Do any additional setup after loading the view.
         
-        let sportsPresenter = AllSportsPresenter(allSportsViewController: self)
+         sportsPresenter = AllSportsPresenter(allSportsViewController: self)
         sportsPresenter.sendAllSportsCategories()
     }
     
@@ -119,7 +120,19 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
             
             let leaguesPresenter = LeaguesPresenter(leaguesTableView: leaguesTableVC, sportName: sportName)
             leaguesTableVC.leaguesPresenter = leaguesPresenter
-            navigationController?.pushViewController(leaguesTableVC, animated: true)
+            
+            if (NetworkManager.isInternetAvailable()){
+                navigationController?.pushViewController(leaguesTableVC, animated: true)
+            }else{
+
+                let alert = UIAlertController(title: "No Internet Connection",
+                                              message: "Check your Internet connection",
+                                              preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 
