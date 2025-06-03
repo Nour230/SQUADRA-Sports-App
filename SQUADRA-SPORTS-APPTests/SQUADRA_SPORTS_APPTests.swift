@@ -7,30 +7,107 @@
 
 import XCTest
 @testable import SQUADRA_SPORTS_APP
+var network :NetworkServiceProtocol!
 
 final class SQUADRA_SPORTS_APPTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        network = NetworkService()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        network = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testGetAllTennisPlayer(){
+        let exp = expectation(description: "Waiting for responce ")
+        NetworkService.getAllTennisPlayer{ tennisPlayer in
+            
+            if (!tennisPlayer.result.isEmpty){
+                XCTAssert(tennisPlayer.result.count == 974)
+            }
+            else{
+                XCTFail()
+            }
+            exp.fulfill()
         }
+        waitForExpectations(timeout: 5)
     }
+    
 
+    func testGetTennisPlayerbyLeagueID(){
+        let exp = expectation(description: "Waiting for responce ")
+        NetworkService.getTennisPlayerbyLeagueID(leagueId: 3173){ tennisPlayer in
+            if (!tennisPlayer.result.isEmpty){
+                var name = tennisPlayer.result.first?.eventFirstPlayer
+                XCTAssertEqual(name , "Europe","Europe isn't the name")
+            }
+            else{
+                XCTFail()
+            }
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetAllTeamsDetails(){
+        let exp = expectation(description: "Waiting for responce ")
+        NetworkService.getAllTeamsDetails(sportName: "football", leagueID: 4){teams in
+            if (!teams.result.isEmpty){
+                XCTAssertNotNil(teams)
+            }
+            else{
+                XCTFail()
+            }
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    
+    func testGetLatestResultsLeagueDetails(){
+        let exp = expectation(description: "Waiting for responce ")
+        NetworkService.getLatestResultsLeagueDetails(sportName: "football", leagueID: 1){latestEvent in
+            
+            if(!latestEvent.result.isEmpty){
+                let name = latestEvent.result.first?.homeTeamName
+                XCTAssertTrue(name == "Spain")
+            }
+            else{
+                XCTFail()
+            }
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetUpcomingLeagueDetails(){
+        let exp = expectation(description: "Waiting for responce ")
+        NetworkService.getUpcomingLeagueDetails(sportName: "football", leagueID: 4){latestEvent in
+            if(!latestEvent.result.isEmpty){
+                let name = latestEvent.result.first?.eventAwayTeam
+                XCTAssertFalse(name == "Spain")
+            }
+            else{
+                XCTFail()
+            }
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetLeagues(){
+        let exp = expectation(description: "Waiting for responce ")
+        NetworkService.getLeagues(sportName: "football"){league in
+            if (!league.result.isEmpty){
+                XCTAssertNotNil(league)
+            }
+            else{
+                XCTFail()
+            }
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
 }
