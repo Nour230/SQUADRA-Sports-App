@@ -460,7 +460,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                     
                     let teamDetailsPresenter = TeamDetailsPresenter(selectedTeam: selectedTeam, sportName: sportName, teamDetailsTableView: teamDetailsTableVC)
                     teamDetailsTableVC.teamDetailsPresenter = teamDetailsPresenter
-                self.navigationController?.pushViewController(teamDetailsTableVC, animated: true)
+                
+                NetworkManager.isInternetAvailable { isConnected in
+                    DispatchQueue.main.async {
+                        if isConnected {
+                            self.navigationController?.pushViewController(teamDetailsTableVC, animated: true)
+                        } else {
+                            let alert = UIAlertController(
+                                title: "No Internet Connection",
+                                message: "Check Your Internet Connection!",
+                                preferredStyle: .alert
+                            )
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
                 
             default :
                 return

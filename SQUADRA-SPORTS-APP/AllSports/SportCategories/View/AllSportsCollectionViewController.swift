@@ -117,24 +117,27 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
             
             guard let name = sportsData[indexPath.row].name else { return }
             let sportName = name.lowercased()
-            
             let leaguesPresenter = LeaguesPresenter(leaguesTableView: leaguesTableVC, sportName: sportName)
             leaguesTableVC.leaguesPresenter = leaguesPresenter
             
-            if (NetworkManager.isInternetAvailable()){
-                navigationController?.pushViewController(leaguesTableVC, animated: true)
-            }else{
-
-                let alert = UIAlertController(title: "No Internet Connection",
-                                              message: "Check your Internet connection",
-                                              preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true, completion: nil)
+            NetworkManager.isInternetAvailable { isConnected in
+                DispatchQueue.main.async {
+                    if isConnected {
+                        self.navigationController?.pushViewController(leaguesTableVC, animated: true)
+                    } else {
+                        let alert = UIAlertController(
+                            title: "No Internet Connection",
+                            message: "Check Your Internet Connection!",
+                            preferredStyle: .alert
+                        )
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(alert, animated: true)
+                    }
+                }
             }
         }
     }
+
 
 
 
