@@ -17,7 +17,7 @@ class ThirdOnboardingViewController: UIViewController {
     
     @IBAction func navigateToSportsCategories(_ sender: Any) {
         let MainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        if let tabBarVC = MainStoryboard.instantiateViewController(withIdentifier: "Favourites") as? FavouritesTableViewController {
+        if let tabBarVC = MainStoryboard.instantiateViewController(withIdentifier: "MainNavigation") as? MainNavigationViewController {
             tabBarVC.modalPresentationStyle = .fullScreen
             self.present(tabBarVC, animated: true)
         }

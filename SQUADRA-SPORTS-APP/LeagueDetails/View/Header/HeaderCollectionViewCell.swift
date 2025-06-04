@@ -45,11 +45,14 @@ class HeaderCollectionViewCell: UICollectionViewCell {
             headerLeagueCountryLabel.textColor = UIColor.white
             headerLeagueSeasonLabel.textColor = UIColor.white
             favouriteButton.tintColor = UIColor.white
+            //headerLeagueCalendarIcon.tintColor = .white
         } else {
             headerLeagueNameLabel.textColor = UIColor.black
             headerLeagueCountryLabel.textColor = UIColor.black
             headerLeagueSeasonLabel.textColor = UIColor.black
             favouriteButton.tintColor = UIColor.black
+            //headerLeagueCalendarIcon.tintColor = .black
+
         }
     }
     
