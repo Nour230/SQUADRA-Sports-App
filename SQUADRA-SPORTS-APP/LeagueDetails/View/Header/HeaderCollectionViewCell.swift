@@ -19,6 +19,7 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var headerLeagueSeasonLabel: UILabel!
     @IBOutlet weak var headerCountryImageView: UIImageView!
     @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var headerLeagueCalenderIcon: UIImageView!
     
     var leagueDetailsPresenter: LeagueDetailsPresenter!
     
@@ -45,14 +46,13 @@ class HeaderCollectionViewCell: UICollectionViewCell {
             headerLeagueCountryLabel.textColor = UIColor.white
             headerLeagueSeasonLabel.textColor = UIColor.white
             favouriteButton.tintColor = UIColor.white
-            //headerLeagueCalendarIcon.tintColor = .white
+            headerLeagueCalenderIcon.tintColor = .white
         } else {
             headerLeagueNameLabel.textColor = UIColor.black
             headerLeagueCountryLabel.textColor = UIColor.black
             headerLeagueSeasonLabel.textColor = UIColor.black
             favouriteButton.tintColor = UIColor.black
-            //headerLeagueCalendarIcon.tintColor = .black
-
+            headerLeagueCalenderIcon.tintColor = .black
         }
     }
     

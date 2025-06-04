@@ -100,6 +100,7 @@
             <connections>
                 <outlet property="favouriteButton" destination="Jtc-ao-Taa" id="MQY-sH-9kV"/>
                 <outlet property="headerCountryImageView" destination="o9N-c7-Xou" id="XGM-dI-iVK"/>
+                <outlet property="headerLeagueCalenderIcon" destination="T1J-H1-9e0" id="5Yj-Yq-xjz"/>
                 <outlet property="headerLeagueCountryLabel" destination="QBo-MQ-3nF" id="m2v-QX-bbd"/>
                 <outlet property="headerLeagueImageView" destination="hAL-uc-iso" id="ozd-uq-4Za"/>
                 <outlet property="headerLeagueNameLabel" destination="3V1-C7-tsc" id="cY8-zS-Zml"/>
