@@ -17,10 +17,10 @@
             </objects>
             <point key="canvasLocation" x="-130" y="-4"/>
         </scene>
-        <!--View Controller-->
+        <!--First Onboarding View Controller-->
         <scene sceneID="jb3-q5-F1i">
             <objects>
-                <viewController storyboardIdentifier="one" id="TXd-hW-tPO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="one" id="TXd-hW-tPO" customClass="FirstOnboardingViewController" customModule="SQUADRA_SPORTS_APP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jiZ-hO-TfI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,15 +148,20 @@
                             <constraint firstItem="jm7-Be-fTO" firstAttribute="centerX" secondItem="lap-qV-g6P" secondAttribute="centerX" id="z5v-2E-rIg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chooseACategoryLabel" destination="pMO-75-oKk" id="1bH-hZ-POM"/>
+                        <outlet property="firstDescriptionTxt" destination="jm7-Be-fTO" id="TZN-lg-oja"/>
+                        <outlet property="squadraLogo" destination="hul-1E-Bsw" id="j5t-br-Ncc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7O-Fm-rZ9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="554.96183206106866" y="-4.2253521126760569"/>
         </scene>
-        <!--View Controller-->
+        <!--Second Onboarding View Controller-->
         <scene sceneID="zXG-QR-2BN">
             <objects>
-                <viewController storyboardIdentifier="two" id="1vk-iK-g1V" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="two" id="1vk-iK-g1V" customClass="SecondOnboardingViewController" customModule="SQUADRA_SPORTS_APP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pR1-30-nGk">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,6 +264,11 @@
                             <constraint firstItem="dsV-GD-XTx" firstAttribute="top" secondItem="b8D-7l-J8V" secondAttribute="bottom" constant="12" id="ye7-pV-JXO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="everythingAtAPlaceLabel" destination="dsV-GD-XTx" id="GZY-sw-6G4"/>
+                        <outlet property="secondDescriptionTxt" destination="uge-Oj-q32" id="NTT-SO-ZnR"/>
+                        <outlet property="squadraLogo" destination="P5w-2l-d9U" id="oxf-X7-ql9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6y-cj-9V9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,18 +314,6 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EO6-lT-ewW">
-                                <rect key="frame" x="143.33333333333334" y="665" width="106.66666666666666" height="32"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Get Started" titleAlignment="center">
-                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
-                                    <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="navigateToSportsCategories:" destination="FCr-V3-hX3" eventType="touchUpInside" id="L88-tC-TCa"/>
-                                    <action selector="navigateToSportsCategories:" destination="nVk-Ae-yBD" eventType="touchUpInside" id="y2I-82-R8Z"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SQUADRALogo" translatesAutoresizingMaskIntoConstraints="NO" id="9at-Ni-L2Q">
                                 <rect key="frame" x="59" y="64" width="275" height="100"/>
                                 <constraints>
@@ -323,6 +321,16 @@
                                     <constraint firstAttribute="width" constant="275" id="cv2-MF-Vuo"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iny-FR-nIp">
+                                <rect key="frame" x="145.66666666666666" y="665" width="102" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Get Started">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="navigateToSportsCategories:" destination="nVk-Ae-yBD" eventType="touchUpInside" id="Cg1-bI-BHP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wms-RP-qoI"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -333,18 +341,23 @@
                             <constraint firstItem="av7-vP-JPK" firstAttribute="height" secondItem="Yev-ZL-bfn" secondAttribute="height" multiplier="0.075" id="O8a-Hm-M1A"/>
                             <constraint firstItem="qdy-xK-qPY" firstAttribute="width" secondItem="Yev-ZL-bfn" secondAttribute="width" multiplier="0.75" id="PHp-Oa-0Ki"/>
                             <constraint firstItem="9at-Ni-L2Q" firstAttribute="centerX" secondItem="wms-RP-qoI" secondAttribute="centerX" id="QbP-K4-gGD"/>
+                            <constraint firstItem="iny-FR-nIp" firstAttribute="centerX" secondItem="av7-vP-JPK" secondAttribute="centerX" id="VFR-iX-gOr"/>
                             <constraint firstItem="qdy-xK-qPY" firstAttribute="centerX" secondItem="wms-RP-qoI" secondAttribute="centerX" id="W1T-88-w0d"/>
                             <constraint firstItem="av7-vP-JPK" firstAttribute="centerX" secondItem="wms-RP-qoI" secondAttribute="centerX" id="eJD-ml-naG"/>
-                            <constraint firstItem="EO6-lT-ewW" firstAttribute="top" secondItem="av7-vP-JPK" secondAttribute="bottom" constant="18" id="eoB-uW-O1t"/>
                             <constraint firstItem="UyG-2E-c4c" firstAttribute="top" secondItem="wms-RP-qoI" secondAttribute="top" constant="185" id="iOO-v3-K88"/>
                             <constraint firstItem="UyG-2E-c4c" firstAttribute="centerX" secondItem="wms-RP-qoI" secondAttribute="centerX" id="mBH-E5-U0Q"/>
-                            <constraint firstItem="EO6-lT-ewW" firstAttribute="centerX" secondItem="av7-vP-JPK" secondAttribute="centerX" id="s7d-Mf-EIV"/>
+                            <constraint firstItem="iny-FR-nIp" firstAttribute="top" secondItem="av7-vP-JPK" secondAttribute="bottom" constant="18" id="t7X-y8-j98"/>
                             <constraint firstItem="av7-vP-JPK" firstAttribute="leading" secondItem="wms-RP-qoI" secondAttribute="leading" constant="32" id="xit-iX-W0Q"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="getStartedButton" destination="iny-FR-nIp" id="gAx-Ov-dhZ"/>
+                        <outlet property="justAClickLabel" destination="qdy-xK-qPY" id="56S-b9-Bpl"/>
+                        <outlet property="squadraLogo" destination="9at-Ni-L2Q" id="YOh-cm-qmz"/>
+                        <outlet property="thirdDescriptionTxt" destination="av7-vP-JPK" id="42U-ZX-3KI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PBi-6y-5wU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="FCr-V3-hX3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1938" y="-4"/>
         </scene>

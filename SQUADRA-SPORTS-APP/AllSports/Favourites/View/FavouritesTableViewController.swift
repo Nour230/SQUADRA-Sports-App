@@ -130,6 +130,7 @@ class FavouritesTableViewController: UITableViewController , FavouritesProtocol 
                 }
             }
         }
+    }
         
         
         /*
@@ -142,31 +143,31 @@ class FavouritesTableViewController: UITableViewController , FavouritesProtocol 
         
         
         // Override to support editing the table view.
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let selectedLeague = favouritesLeagues[indexPath.row]
+            
+            let alert = UIAlertController(title: "Remove From Favorites",
+                                          message: "Are You Sure Yow Want To Remove This League From Your Favourites ?",
+                                          preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
                 
-                let selectedLeague = favouritesLeagues[indexPath.row]
+                self.favouritesLeagues.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
                 
-                let alert = UIAlertController(title: "Remove From Favorites",
-                                              message: "Are You Sure Yow Want To Remove This League From Your Favourites ?",
-                                              preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                
-                alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
-                    
-                    self.favouritesLeagues.remove(at: indexPath.row)
-                    self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    
-                    self.favouritesPresenter.deleteFavouriteLeagueFromDataBase(ID: selectedLeague.leagueModel.leagueID!)
-                }))
-                
-                self.present(alert, animated: true, completion: nil)
-                
-            } else if editingStyle == .insert {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-            }
+                self.favouritesPresenter.deleteFavouriteLeagueFromDataBase(ID: selectedLeague.leagueModel.leagueID!)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
+    }
         
 
         /*
@@ -193,6 +194,4 @@ class FavouritesTableViewController: UITableViewController , FavouritesProtocol 
          // Pass the selected object to the new view controller.
          }
          */
-        
-    }
 }

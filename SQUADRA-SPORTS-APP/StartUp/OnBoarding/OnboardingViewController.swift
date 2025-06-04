@@ -9,8 +9,6 @@ import UIKit
 
 class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSource {
     
-    
-    
     lazy var vcArray: [UIViewController] = {
         let storyBoard = UIStoryboard(name: "OnBoardingScreens", bundle: nil)
         
