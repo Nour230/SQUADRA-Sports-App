@@ -63,6 +63,8 @@
 		B83485042DEBAC05007D84F0 /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83485022DEBAC05007D84F0 /* HeaderCollectionViewCell.xib */; };
 		B83600572DEC9E9F00F1274C /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83600562DEC9E9F00F1274C /* TeamDetailsViewController.swift */; };
 		B836FF722DEC77AB00F1274C /* SectionHeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B836FF712DEC779C00F1274C /* SectionHeaderTitle.swift */; };
+		B843CFD72DF075CA000ECEEC /* ThirdOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B843CFD62DF075CA000ECEEC /* ThirdOnboardingViewController.swift */; };
+		B84755442DEF8E3900FF3BB3 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84755432DEF8E3900FF3BB3 /* OnboardingViewController.swift */; };
 		B857F1E42DE9418500BA2AAF /* LeaguesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B857F1E32DE9418500BA2AAF /* LeaguesTableViewController.swift */; };
 		B857F1E72DE941A800BA2AAF /* LeaguesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B857F1E62DE941A800BA2AAF /* LeaguesTableViewCell.xib */; };
 		B857F1E82DE941A800BA2AAF /* LeaguesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B857F1E52DE941A800BA2AAF /* LeaguesTableViewCell.swift */; };
@@ -144,6 +146,8 @@
 		B83485022DEBAC05007D84F0 /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		B83600562DEC9E9F00F1274C /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
 		B836FF712DEC779C00F1274C /* SectionHeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderTitle.swift; sourceTree = "<group>"; };
+		B843CFD62DF075CA000ECEEC /* ThirdOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingViewController.swift; sourceTree = "<group>"; };
+		B84755432DEF8E3900FF3BB3 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B857F1E32DE9418500BA2AAF /* LeaguesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTableViewController.swift; sourceTree = "<group>"; };
 		B857F1E52DE941A800BA2AAF /* LeaguesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTableViewCell.swift; sourceTree = "<group>"; };
 		B857F1E62DE941A800BA2AAF /* LeaguesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaguesTableViewCell.xib; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				1404282E2DEF5B7000538C3B /* OnBoardingScreens.storyboard */,
+				B84755432DEF8E3900FF3BB3 /* OnboardingViewController.swift */,
+				B843CFD62DF075CA000ECEEC /* ThirdOnboardingViewController.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				147D591B2DEDD5D800E73181 /* LocalDataSource.swift in Sources */,
+				B843CFD72DF075CA000ECEEC /* ThirdOnboardingViewController.swift in Sources */,
 				14A263572DEB66DC00055EFC /* LatestResultsModel .swift in Sources */,
 				14B25D5F2DE949B6004788ED /* CollectionViewCell.swift in Sources */,
 				B83600572DEC9E9F00F1274C /* TeamDetailsViewController.swift in Sources */,
@@ -764,6 +771,7 @@
 				14B25D572DE93FAB004788ED /* AllSportsModel.swift in Sources */,
 				B857F1E82DE941A800BA2AAF /* LeaguesTableViewCell.swift in Sources */,
 				1462AE0D2DECA65D002E52C2 /* TennisPlayers.swift in Sources */,
+				B84755442DEF8E3900FF3BB3 /* OnboardingViewController.swift in Sources */,
 				B857F1E42DE9418500BA2AAF /* LeaguesTableViewController.swift in Sources */,
 				140428202DEF48EF00538C3B /* NetworkServiceProtocol.swift in Sources */,
 				14A263482DEB375100055EFC /* TeamCollectionViewCell.swift in Sources */,
