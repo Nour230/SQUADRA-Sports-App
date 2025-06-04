@@ -29,6 +29,22 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         //leaguesPresenter = LeaguesPresenter(leaguesTableView: self)
         leaguesPresenter.getLeagueFromNetwork()
         self.tableView.reloadData()
+        updateSeparatorColor()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle {
+            updateSeparatorColor()
+        }
+    }
+
+    func updateSeparatorColor() {
+        if traitCollection.userInterfaceStyle == .dark {
+            tableView.separatorColor = UIColor.lightGray.withAlphaComponent(0.9)
+        } else {
+            tableView.separatorColor = UIColor.white
+        }
     }
     
     func renderLeaguesTableView(result: LeaguesResponse) {
@@ -110,6 +126,8 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
             }
         }
     }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

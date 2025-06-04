@@ -24,12 +24,28 @@ class FavouritesTableViewController: UITableViewController , FavouritesProtocol 
         
         let nib = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FavouritesCell")
-        
+        updateSeparatorColor()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         favouritesPresenter.getAllFavouritesFromDataBase()
         tableView.reloadData()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle {
+            updateSeparatorColor()
+        }
+    }
+
+    func updateSeparatorColor() {
+        if traitCollection.userInterfaceStyle == .dark {
+            tableView.separatorColor = UIColor.lightGray.withAlphaComponent(0.9)
+        } else {
+            tableView.separatorColor = UIColor.white
+        }
     }
     
     func displayAllFavouritesLeagues(result : [CachedFavouritesModel]) {
@@ -152,7 +168,7 @@ class FavouritesTableViewController: UITableViewController , FavouritesProtocol 
             }
         }
         
-        
+
         /*
          // Override to support rearranging the table view.
          override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

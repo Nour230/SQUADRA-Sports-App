@@ -29,8 +29,33 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        updateAppearance()
+    }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateAppearance()
+        }
     }
 
+    private func updateAppearance() {
+        if traitCollection.userInterfaceStyle == .dark {
+            headerLeagueNameLabel.textColor = UIColor.white
+            headerLeagueCountryLabel.textColor = UIColor.white
+            headerLeagueSeasonLabel.textColor = UIColor.white
+            favouriteButton.tintColor = UIColor.white
+            //headerLeagueCalendarIcon.tintColor = .white
+        } else {
+            headerLeagueNameLabel.textColor = UIColor.black
+            headerLeagueCountryLabel.textColor = UIColor.black
+            headerLeagueSeasonLabel.textColor = UIColor.black
+            favouriteButton.tintColor = UIColor.black
+            //headerLeagueCalendarIcon.tintColor = .black
+
+        }
+    }
+    
     @IBAction func addToFavourites(_ sender: Any) {
         if isFavorite {
             delegate?.presentRemoveFromFavoritesAlert {
@@ -51,7 +76,12 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         if(imageName == "heart.fill"){
             favouriteButton.tintColor = .red
         } else {
-            favouriteButton.tintColor = .black
+            if traitCollection.userInterfaceStyle == .dark {
+                favouriteButton.tintColor = .white
+            }else{
+                favouriteButton.tintColor = .black
+            }
+            
         }
     }
     

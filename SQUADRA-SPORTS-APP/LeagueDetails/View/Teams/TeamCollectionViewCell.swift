@@ -14,6 +14,23 @@ class TeamCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        updateAppearance()
+    }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateAppearance()
+        }
     }
 
+    private func updateAppearance() {
+        if traitCollection.userInterfaceStyle == .dark {
+            teamNameLable.textColor = UIColor.white
+            
+        } else {
+            teamNameLable.textColor = UIColor.black
+            
+        }
+    }
 }

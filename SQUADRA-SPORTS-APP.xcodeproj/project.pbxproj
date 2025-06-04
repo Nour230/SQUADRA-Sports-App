@@ -25,6 +25,7 @@
 		147D59182DEDC65100E73181 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D59172DEDC65100E73181 /* FavouritesTableViewController.swift */; };
 		147D591B2DEDD5D800E73181 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D591A2DEDD5D800E73181 /* LocalDataSource.swift */; };
 		147D591D2DEDD5F900E73181 /* LocalDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147D591C2DEDD5F900E73181 /* LocalDataSourceProtocol.swift */; };
+		1488C6332DF0897100CD790B /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1488C6322DF0897100CD790B /* MainNavigationViewController.swift */; };
 		149575232DEE38EC0048DC49 /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149575222DEE38EC0048DC49 /* FavouritesPresenter.swift */; };
 		149575292DEE40CA0048DC49 /* CachedFavoureties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149575282DEE40CA0048DC49 /* CachedFavoureties.swift */; };
 		1495752E2DEE50D70048DC49 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495752D2DEE50D70048DC49 /* TabBarViewController.swift */; };
@@ -106,6 +107,7 @@
 		147D59172DEDC65100E73181 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
 		147D591A2DEDD5D800E73181 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		147D591C2DEDD5F900E73181 /* LocalDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSourceProtocol.swift; sourceTree = "<group>"; };
+		1488C6322DF0897100CD790B /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 		149575222DEE38EC0048DC49 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
 		149575282DEE40CA0048DC49 /* CachedFavoureties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedFavoureties.swift; sourceTree = "<group>"; };
 		1495752D2DEE50D70048DC49 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				14B25D272DE93EBD004788ED /* LaunchScreen.storyboard */,
 				14B25D5E2DE949B6004788ED /* CollectionViewCell.xib */,
 				1495752D2DEE50D70048DC49 /* TabBarViewController.swift */,
+				1488C6322DF0897100CD790B /* MainNavigationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				14F370182DEA634C00F4687F /* APIKeys.swift in Sources */,
 				1462AE0B2DEC99AF002E52C2 /* TeamDetailsPresenter.swift in Sources */,
 				14A263522DEB494400055EFC /* LeagueDetailsPresenter.swift in Sources */,
+				1488C6332DF0897100CD790B /* MainNavigationViewController.swift in Sources */,
 				14A2634F2DEB37AA00055EFC /* LeagueDetailsCollectionViewController.swift in Sources */,
 				14A263552DEB5D9C00055EFC /* UpcomingEventModel.swift in Sources */,
 				147D59152DEDAC8000E73181 /* CoachTableViewCell.swift in Sources */,
@@ -959,7 +963,7 @@
 				INFOPLIST_FILE = "SQUADRA-SPORTS-APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = OnBoardingScreens;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -986,7 +990,7 @@
 				INFOPLIST_FILE = "SQUADRA-SPORTS-APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = OnBoardingScreens;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
