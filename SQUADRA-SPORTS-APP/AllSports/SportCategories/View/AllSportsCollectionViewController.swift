@@ -32,6 +32,8 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
         
          sportsPresenter = AllSportsPresenter(allSportsViewController: self)
         sportsPresenter.sendAllSportsCategories()
+        
+        updateTabBarColors()
     }
     
     func displaySports(sports: [AllSportsModel]) {
@@ -139,6 +141,21 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
     }
 
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTabBarColors()
+        }
+    }
+
+    func updateTabBarColors() {
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        tabBarController?.tabBar.tintColor = isDarkMode ? .white : .black
+        tabBarController?.tabBar.unselectedItemTintColor = isDarkMode ? .lightGray : .gray
+    }
+    
+    
 
 
     // MARK: UICollectionViewDelegate

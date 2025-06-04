@@ -21,6 +21,30 @@ class EventCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        updateAppearance()
+    }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateAppearance()
+        }
     }
 
+    private func updateAppearance() {
+        if traitCollection.userInterfaceStyle == .dark {
+            self.backgroundColor = UIColor.white
+            homeTeamLabel.textColor = UIColor.black
+            awayTeamLabel.textColor = UIColor.black
+            timeOrScoreLabel.textColor = UIColor.black
+            dateLabel.textColor = UIColor.black
+            
+        } else {
+            self.backgroundColor = UIColor.black
+            homeTeamLabel.textColor = UIColor.white
+            awayTeamLabel.textColor = UIColor.white
+            timeOrScoreLabel.textColor = UIColor.white
+            dateLabel.textColor = UIColor.white
+        }
+    }
 }
