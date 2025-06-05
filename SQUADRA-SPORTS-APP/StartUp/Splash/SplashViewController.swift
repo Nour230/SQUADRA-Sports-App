@@ -45,7 +45,7 @@ class SplashViewController: UIViewController {
     
     private func goToMainScreen() {
         let storyboard = UIStoryboard(name: "OnBoardingScreens", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "one")
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "OnBarding")
         mainVC.modalTransitionStyle = .crossDissolve
         mainVC.modalPresentationStyle = .fullScreen
         present(mainVC, animated: true)
