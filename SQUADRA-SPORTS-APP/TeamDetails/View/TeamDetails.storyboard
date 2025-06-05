@@ -45,7 +45,7 @@
                                 </connections>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9SG-Wc-OjQ">
-                                <rect key="frame" x="115" y="100" width="150" height="150"/>
+                                <rect key="frame" x="121.66666666666669" y="100" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="i2P-hv-27Y"/>
                                     <constraint firstAttribute="width" constant="150" id="nH7-SY-UTt"/>
@@ -58,7 +58,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHb-1f-CvS">
-                                <rect key="frame" x="145.66666666666666" y="258" width="89" height="19.333333333333314"/>
+                                <rect key="frame" x="152" y="258" width="89" height="19.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Cmc-io-Khg" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="8Va-SV-fwG"/>
-                            <constraint firstItem="9SG-Wc-OjQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="115" id="b13-dx-9rC"/>
+                            <constraint firstItem="9SG-Wc-OjQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="121.5" id="Xb2-0s-lja"/>
                             <constraint firstItem="SHb-1f-CvS" firstAttribute="centerX" secondItem="9SG-Wc-OjQ" secondAttribute="centerX" id="iWS-Zg-awV"/>
                             <constraint firstItem="9SG-Wc-OjQ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="100" id="iid-jf-h16"/>
                             <constraint firstItem="Cmc-io-Khg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="lNa-H7-oiC"/>
