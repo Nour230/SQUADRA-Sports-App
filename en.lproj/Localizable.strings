@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  SQUADRA-SPORTS-APP
+
+  Created by nourhan essam on 05/06/2025.
+  
+*/
+
+"AllSportsTitle" = "Sports Categories";
+"Football" = "Football";
+"Basketball" = "Basketball";
+"Tennis" ="Tennis";
+"Cricket" = "Cricket";
+"FavouritesTitle" = "Favourites Leagues";
+"LeaguesTitle" = "Leagues";
+"LeaguesDetailsTitle" = "League";
+"RecentTennisEventsHeader" = "Recent Tennis Events";
+"UpcomingEventsHeader" ="Upcoming Events";
+"TennisPlayersHeader" = "Tennis Players";
+"LatestResultsHeader" = "Latest Results";
+"LeagueTeamsHeader" = "League Teams";
+"TeamDetailsTitle" = "Team Details";
+"CoachHeader" = "Coach";
+"Players" = "Players";
+"remove_from_favorites" = "Remove From Favorites";
+"confirm_remove_league" = "Are you sure you want to remove this league from your favourites?";
+"cancel" = "Cancel";
+"remove" = "Remove";
+"no_internet_title" = "No Internet Connection";
+"no_internet_message" = "Check your internet connection!";
+"ok" = "OK";
+"unknown_team" = "Unknown Team";
+"unknown_player" = "Unknown Player";
+"unknown_date" = "Unknown Date";
+"unknown_time" = "Unknown Time";
+"not_available" = "N/A";
+"unknown_country" = "Unknown Country";

@@ -46,7 +46,9 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         DispatchQueue.main.async {
             self.sportName = sportName
             self.team = res
-            self.navigationItem.title = "\(self.team.teamName!) Team Details"
+            let teamDetailsTitle = NSLocalizedString("TeamDetailsTitle", comment: "")
+            self.navigationItem.title = "\(self.team.teamName!) \(teamDetailsTitle)"
+
             self.teamNameLabel.text = self.team.teamName!
             
             if let teamImageView = self.team.teamLogo {
@@ -161,14 +163,14 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         switch section{
         case 0:
             if(sportName == "football"){
-                label.text = "Coach"
+                label.text = NSLocalizedString("CoachHeader", comment: "")
             } else {
                 label.isHidden = true
             }
             break
         default:
             if(sportName == "football"){
-                label.text = "Players"
+                label.text = NSLocalizedString("Players", comment: "")
             } else {
                 label.isHidden = true
             }
