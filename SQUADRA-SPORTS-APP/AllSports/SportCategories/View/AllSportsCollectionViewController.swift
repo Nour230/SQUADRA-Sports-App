@@ -118,27 +118,39 @@ class AllSportsCollectionViewController: UICollectionViewController ,UICollectio
         if let leaguesTableVC = leaguesStoryboard.instantiateViewController(withIdentifier: "Leagues") as? LeaguesTableViewController {
             
             guard let name = sportsData[indexPath.row].name else { return }
-            let sportName = name.lowercased()
+            
+            // Mapping Arabic sport names to English
+            let arabicToEnglishSportNames: [String: String] = [
+                "كرة القدم": "football",
+                "كرة السلة": "basketball",
+                "تنس": "tennis",
+                "الكريكيت": "cricket"
+            ]
+            
+            // Use the mapping if the sport name is in Arabic, otherwise use the lowercased name
+            let sportName = arabicToEnglishSportNames[name] ?? name.lowercased()
+            
             let leaguesPresenter = LeaguesPresenter(leaguesTableView: leaguesTableVC, sportName: sportName)
             leaguesTableVC.leaguesPresenter = leaguesPresenter
             
-            NetworkManager.isInternetAvailable{ isConnected in
+            NetworkManager.isInternetAvailable { isConnected in
                 DispatchQueue.main.async {
                     if isConnected {
                         self.navigationController?.pushViewController(leaguesTableVC, animated: true)
                     } else {
                         let alert = UIAlertController(
-                            title: "No Internet Connection",
-                            message: "Check Your Internet Connection!",
+                            title: NSLocalizedString("no_internet_title", comment: ""),
+                            message: NSLocalizedString("no_internet_message", comment: ""),
                             preferredStyle: .alert
                         )
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .cancel))
                         self.present(alert, animated: true)
                     }
                 }
             }
         }
     }
+
 
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

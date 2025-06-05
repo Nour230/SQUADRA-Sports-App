@@ -17,11 +17,11 @@ class AllSportsPresenter {
         
         // Create the list of 4 sports
         self.sportsCat = [
-            AllSportsModel(name: "Football", img: "Football"),
-            AllSportsModel(name: "Basketball", img: "Basketball"),
-            AllSportsModel(name: "Tennis", img: "Tennis"),
-            AllSportsModel(name: "Cricket", img: "Cricket")
-        ]
+                AllSportsModel(name: NSLocalizedString("Football", comment: "Football sport name"), img: "Football"),
+                AllSportsModel(name: NSLocalizedString("Basketball", comment: "Basketball sport name"), img: "Basketball"),
+                AllSportsModel(name: NSLocalizedString("Tennis", comment: "Tennis sport name"), img: "Tennis"),
+                AllSportsModel(name: NSLocalizedString("Cricket", comment: "Cricket sport name"), img: "Cricket")
+            ]
     }
 
     func sendAllSportsCategories() {

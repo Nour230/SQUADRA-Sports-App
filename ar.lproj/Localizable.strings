@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  SQUADRA-SPORTS-APP
+
+  Created by nourhan essam on 05/06/2025.
+  
+*/
+"AllSportsTitle" = "فئات الرياضة";
+"Football" = "كرة القدم";
+"Basketball" = "كرة السلة";
+"Tennis" = "التنس";
+"Cricket" = "الكريكيت";
+"FavouritesTitle" = "الدوريات المفضلة";
+"LeaguesTitle" = "الدوريات";
+"LeaguesDetailsTitle" = "الدوري";
+"RecentTennisEventsHeader" = "أحداث التنس الأخيرة";
+"UpcomingEventsHeader" = "الأحداث القادمة";
+"TennisPlayersHeader" = "لاعبو التنس";
+"LatestResultsHeader" = "أحدث النتائج";
+"LeagueTeamsHeader" = "فرق الدوري";
+"TeamDetailsTitle" = "تفاصيل الفريق";
+"CoachHeader" = "المدرب";
+"Players" = "اللاعبون";
+"remove_from_favorites" = "إزالة من المفضلة";
+"confirm_remove_league" = "هل أنت متأكد أنك تريد إزالة هذه البطولة من المفضلة؟";
+"cancel" = "إلغاء";
+"remove" = "إزالة";
+"no_internet_title" = "لا يوجد اتصال بالإنترنت";
+"no_internet_message" = "تحقق من اتصالك بالإنترنت!";
+"ok" = "حسناً";
+"unknown_team" = "فريق غير معروف";
+"unknown_player" = "لاعب غير معروف";
+"unknown_date" = "تاريخ غير معروف";
+"unknown_time" = "وقت غير معروف";
+"not_available" = "غير متوفر";
+"unknown_country" = "دولة غير معروفة";

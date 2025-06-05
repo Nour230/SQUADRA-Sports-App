@@ -13,7 +13,6 @@
 		140428232DEF561900538C3B /* FakeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140428222DEF561900538C3B /* FakeNetwork.swift */; };
 		140428252DEF569300538C3B /* MockNteworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140428242DEF569300538C3B /* MockNteworkServiceTest.swift */; };
 		1404282C2DEF5B3600538C3B /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1404282B2DEF5B3600538C3B /* SplashScreen.storyboard */; };
-		1404282F2DEF5B7000538C3B /* OnBoardingScreens.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1404282E2DEF5B7000538C3B /* OnBoardingScreens.storyboard */; };
 		143D0A672DEC3BBB00F5464F /* AllTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143D0A662DEC3BBB00F5464F /* AllTeams.swift */; };
 		1462AE032DEC9957002E52C2 /* TeamDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1462AE022DEC9957002E52C2 /* TeamDetails.storyboard */; };
 		1462AE072DEC998B002E52C2 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462AE052DEC998B002E52C2 /* PlayerTableViewCell.swift */; };
@@ -38,6 +37,10 @@
 		14A263522DEB494400055EFC /* LeagueDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A263512DEB494400055EFC /* LeagueDetailsPresenter.swift */; };
 		14A263552DEB5D9C00055EFC /* UpcomingEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A263542DEB5D9C00055EFC /* UpcomingEventModel.swift */; };
 		14A263572DEB66DC00055EFC /* LatestResultsModel .swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A263562DEB66DC00055EFC /* LatestResultsModel .swift */; };
+		14A49C982DF0E2C4007EA5FA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 14A49C972DF0E2C4007EA5FA /* Lottie */; };
+		14A49C9A2DF0E3F4007EA5FA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A49C992DF0E3F4007EA5FA /* SplashViewController.swift */; };
+		14A49C9F2DF0E904007EA5FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14A49CA12DF0E904007EA5FA /* Localizable.strings */; };
+		14A49CA32DF0E962007EA5FA /* OnBoardingScreens.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A49CA52DF0E962007EA5FA /* OnBoardingScreens.storyboard */; };
 		14B25D1A2DE93EBB004788ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B25D192DE93EBB004788ED /* AppDelegate.swift */; };
 		14B25D1C2DE93EBB004788ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B25D1B2DE93EBB004788ED /* SceneDelegate.swift */; };
 		14B25D1E2DE93EBB004788ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B25D1D2DE93EBB004788ED /* ViewController.swift */; };
@@ -97,7 +100,6 @@
 		140428222DEF561900538C3B /* FakeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetwork.swift; sourceTree = "<group>"; };
 		140428242DEF569300538C3B /* MockNteworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNteworkServiceTest.swift; sourceTree = "<group>"; };
 		1404282B2DEF5B3600538C3B /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
-		1404282E2DEF5B7000538C3B /* OnBoardingScreens.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnBoardingScreens.storyboard; sourceTree = "<group>"; };
 		143D0A662DEC3BBB00F5464F /* AllTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeams.swift; sourceTree = "<group>"; };
 		1462AE022DEC9957002E52C2 /* TeamDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamDetails.storyboard; sourceTree = "<group>"; };
 		1462AE052DEC998B002E52C2 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
@@ -122,6 +124,14 @@
 		14A263512DEB494400055EFC /* LeagueDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsPresenter.swift; sourceTree = "<group>"; };
 		14A263542DEB5D9C00055EFC /* UpcomingEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventModel.swift; sourceTree = "<group>"; };
 		14A263562DEB66DC00055EFC /* LatestResultsModel .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LatestResultsModel .swift"; sourceTree = "<group>"; };
+		14A49C992DF0E3F4007EA5FA /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		14A49C9D2DF0E8D9007EA5FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		14A49C9E2DF0E8DA007EA5FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		14A49CA02DF0E904007EA5FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14A49CA22DF0E909007EA5FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14A49CA42DF0E962007EA5FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OnBoardingScreens.storyboard; sourceTree = "<group>"; };
+		14A49CA72DF0E96E007EA5FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OnBoardingScreens.strings; sourceTree = "<group>"; };
+		14A49CA92DF0E971007EA5FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/OnBoardingScreens.strings; sourceTree = "<group>"; };
 		14B25D162DE93EBB004788ED /* SQUADRA-SPORTS-APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SQUADRA-SPORTS-APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B25D192DE93EBB004788ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B25D1B2DE93EBB004788ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +177,7 @@
 				14F36FFE2DEA5A9200F4687F /* Kingfisher in Frameworks */,
 				1404281B2DEF1FEC00538C3B /* Reachability in Frameworks */,
 				14F36FF92DEA59F300F4687F /* Alamofire in Frameworks */,
+				14A49C982DF0E2C4007EA5FA /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				1404282B2DEF5B3600538C3B /* SplashScreen.storyboard */,
+				14A49C992DF0E3F4007EA5FA /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -216,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				B843CFD82DF08E6B000ECEEC /* OnBoardingScreens */,
-				1404282E2DEF5B7000538C3B /* OnBoardingScreens.storyboard */,
+				14A49CA52DF0E962007EA5FA /* OnBoardingScreens.storyboard */,
 				B84755432DEF8E3900FF3BB3 /* OnboardingViewController.swift */,
 			);
 			path = OnBoarding;
@@ -392,6 +404,7 @@
 		14B25D0D2DE93EBB004788ED = {
 			isa = PBXGroup;
 			children = (
+				14A49CA12DF0E904007EA5FA /* Localizable.strings */,
 				140428212DEF557F00538C3B /* SQUADRA-SPORTS-APP.xctestplan */,
 				14B25D182DE93EBB004788ED /* SQUADRA-SPORTS-APP */,
 				14B25D322DE93EBE004788ED /* SQUADRA-SPORTS-APPTests */,
@@ -623,6 +636,7 @@
 				14F36FF82DEA59F300F4687F /* Alamofire */,
 				14F36FFD2DEA5A9200F4687F /* Kingfisher */,
 				1404281A2DEF1FEC00538C3B /* Reachability */,
+				14A49C972DF0E2C4007EA5FA /* Lottie */,
 			);
 			productName = "SQUADRA-SPORTS-APP";
 			productReference = 14B25D162DE93EBB004788ED /* SQUADRA-SPORTS-APP.app */;
@@ -694,12 +708,14 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 14B25D0D2DE93EBB004788ED;
 			packageReferences = (
 				14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				14F36FFC2DEA5A9200F4687F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				140428192DEF1FEC00538C3B /* XCRemoteSwiftPackageReference "Reachability" */,
+				14A49C962DF0E2C4007EA5FA /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 14B25D172DE93EBB004788ED /* Products */;
 			projectDirPath = "";
@@ -718,7 +734,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1462AE032DEC9957002E52C2 /* TeamDetails.storyboard in Resources */,
-				1404282F2DEF5B7000538C3B /* OnBoardingScreens.storyboard in Resources */,
+				14A49CA32DF0E962007EA5FA /* OnBoardingScreens.storyboard in Resources */,
 				14B25D292DE93EBD004788ED /* LaunchScreen.storyboard in Resources */,
 				14A263492DEB375100055EFC /* TeamCollectionViewCell.xib in Resources */,
 				14B25D262DE93EBD004788ED /* Assets.xcassets in Resources */,
@@ -730,6 +746,7 @@
 				14B25D212DE93EBB004788ED /* Main.storyboard in Resources */,
 				14B25D542DE93F5A004788ED /* Leagues.storyboard in Resources */,
 				14A2634D2DEB377300055EFC /* EventCollectionViewCell.xib in Resources */,
+				14A49C9F2DF0E904007EA5FA /* Localizable.strings in Resources */,
 				147D59162DEDAC8000E73181 /* CoachTableViewCell.xib in Resources */,
 				1404282C2DEF5B3600538C3B /* SplashScreen.storyboard in Resources */,
 			);
@@ -789,6 +806,7 @@
 				14B25D572DE93FAB004788ED /* AllSportsModel.swift in Sources */,
 				B857F1E82DE941A800BA2AAF /* LeaguesTableViewCell.swift in Sources */,
 				B843CFDA2DF08E91000ECEEC /* FirstOnboardingViewController.swift in Sources */,
+				14A49C9A2DF0E3F4007EA5FA /* SplashViewController.swift in Sources */,
 				1462AE0D2DECA65D002E52C2 /* TennisPlayers.swift in Sources */,
 				B84755442DEF8E3900FF3BB3 /* OnboardingViewController.swift in Sources */,
 				B857F1E42DE9418500BA2AAF /* LeaguesTableViewController.swift in Sources */,
@@ -835,10 +853,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		14A49CA12DF0E904007EA5FA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14A49CA02DF0E904007EA5FA /* en */,
+				14A49CA22DF0E909007EA5FA /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		14A49CA52DF0E962007EA5FA /* OnBoardingScreens.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14A49CA42DF0E962007EA5FA /* Base */,
+				14A49CA72DF0E96E007EA5FA /* en */,
+				14A49CA92DF0E971007EA5FA /* ar */,
+			);
+			name = OnBoardingScreens.storyboard;
+			sourceTree = "<group>";
+		};
 		14B25D1F2DE93EBB004788ED /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				14B25D202DE93EBB004788ED /* Base */,
+				14A49C9D2DF0E8D9007EA5FA /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -847,6 +885,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				14B25D282DE93EBD004788ED /* Base */,
+				14A49C9E2DF0E8DA007EA5FA /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -858,6 +897,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -918,6 +958,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -979,7 +1020,7 @@
 				INFOPLIST_FILE = "SQUADRA-SPORTS-APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = OnBoardingScreens;
+				INFOPLIST_KEY_UIMainStoryboardFile = SplashScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1006,7 +1047,7 @@
 				INFOPLIST_FILE = "SQUADRA-SPORTS-APP/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = OnBoardingScreens;
+				INFOPLIST_KEY_UIMainStoryboardFile = SplashScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1144,6 +1185,14 @@
 				version = 5.1.0;
 			};
 		};
+		14A49C962DF0E2C4007EA5FA /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.0;
+			};
+		};
 		14F36FF72DEA59F200F4687F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1167,6 +1216,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 140428192DEF1FEC00538C3B /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		14A49C972DF0E2C4007EA5FA /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14A49C962DF0E2C4007EA5FA /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		14F36FF82DEA59F300F4687F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

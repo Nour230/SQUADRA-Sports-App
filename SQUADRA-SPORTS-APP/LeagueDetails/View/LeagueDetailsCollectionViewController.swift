@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Lottie
 protocol LeagueDetailsProtocol{
     func displayUpcomingLeagueDetails(res : UpcomingEventResponse)
     func displayLatestResultsLeagueDetails(res : LatestResultsEventResponse)
@@ -31,6 +31,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     
     var headerLeagueSeason : String!
     
+    private var animationView: LottieAnimationView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,6 +60,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "EmptyStateCell")
+        
         
         // Do any additional setup after loading the view.
         leagueDetailsPresenter.sendSelectedHeaderLeague()
@@ -115,28 +119,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     }
     
     func presentRemoveFromFavoritesAlert(completion: @escaping () -> Void) {
-        let alert = UIAlertController(title: "Remove From Favorites",
-                                      message: "Are You Sure Yow Want To Remove This League From Your Favourites ?",
-                                      preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+        let alert = UIAlertController(
+            title: NSLocalizedString("remove_from_favorites", comment: ""),
+            message: NSLocalizedString("confirm_remove_league", comment: ""),
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("remove", comment: ""), style: .destructive, handler: { _ in
             completion()
         }))
+
         
         self.present(alert, animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     
     func addHeader(to section: NSCollectionLayoutSection, height: CGFloat = 44) {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -159,6 +157,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         section.interGroupSpacing = 10
         return section
     }
+    
     
     func upcomingEventsSection() -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -246,23 +245,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return leagueDetailsPresenter.sportName == "tennis" ? 3 : 4
     }
-
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
             return headerLeagueDetails == nil ? 0 : 1
         case 1:
             if leagueDetailsPresenter.sportName == "tennis" {
-                return allResentTennisEvents.count
+                return allResentTennisEvents.isEmpty ? 1 : allResentTennisEvents.count
             } else {
-                return upcomingEvents.count
+                return upcomingEvents.isEmpty ? 1 : upcomingEvents.count
             }
         case 2:
             if leagueDetailsPresenter.sportName == "tennis" {
-                return allTennisPlayers.count
+                return allTennisPlayers.isEmpty ? 1 : allTennisPlayers.count
             } else {
-                return latestEvents.count
+                return latestEvents.isEmpty ? 1 : latestEvents.count
             }
         case 3:
             return allTeams.count
@@ -306,6 +304,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
         case 1:
             if leagueDetailsPresenter.sportName == "tennis" {
+                if allResentTennisEvents.isEmpty {
+                    return createAnimationCell(for: collectionView, at: indexPath)
+                }
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestResultsEvents", for: indexPath) as? EventCollectionViewCell else {
                     fatalError("Could not dequeue cell")
                 }
@@ -332,6 +333,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 return cell
             } else {
+                if upcomingEvents.isEmpty {
+                    return createAnimationCell(for: collectionView, at: indexPath)
+                }
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpcomingEvents", for: indexPath) as? EventCollectionViewCell else {
                     fatalError("Could not dequeue cell")
                 }
@@ -361,6 +365,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
         case 2:
             if leagueDetailsPresenter.sportName == "tennis" {
+                if allTennisPlayers.isEmpty {
+                    return createAnimationCell(for: collectionView, at: indexPath)
+                }
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Teams", for: indexPath) as? TeamCollectionViewCell else {
                     fatalError("Could not dequeue cell")
                 }
@@ -376,6 +383,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 return cell
             } else {
+                if latestEvents.isEmpty {
+                    return createAnimationCell(for: collectionView, at: indexPath)
+                }
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestResultsEvents", for: indexPath) as? EventCollectionViewCell else {
                     fatalError("Could not dequeue cell")
                 }
@@ -422,6 +432,35 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         }
     }
     
+    private func createAnimationCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyStateCell", for: indexPath)
+        
+        // Remove any existing subviews
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        
+        // Create animation view
+        let animationView = LottieAnimationView(name: "NoDataFound")
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 0.7
+        
+        
+        cell.contentView.addSubview(animationView)
+        
+        NSLayoutConstraint.activate([
+            animationView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor, constant: -30),
+            animationView.widthAnchor.constraint(equalToConstant: 400),
+            animationView.heightAnchor.constraint(equalToConstant: 200),
+        
+        ])
+        
+        animationView.play()
+        
+        return cell
+    }
+    
+    
     override func collectionView(_ collectionView: UICollectionView,
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
@@ -437,17 +476,21 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         }
         
         switch indexPath.section {
-            case 1:
-                header.titleLabel.text = leagueDetailsPresenter.sportName == "tennis" ? "Recent Tennis Events" : "Upcoming Events"
-            case 2:
-                header.titleLabel.text = leagueDetailsPresenter.sportName == "tennis" ? "Tennis Players" : "Latest Results"
-            case 3:
-                header.titleLabel.text = "League Teams"
-            default:
-                header.titleLabel.text = ""
-            }
-            
-            return header
+        case 1:
+            header.titleLabel.text = leagueDetailsPresenter.sportName == "tennis"
+            ? NSLocalizedString("RecentTennisEventsHeader", comment: "")
+            : NSLocalizedString("UpcomingEventsHeader", comment: "")
+        case 2:
+            header.titleLabel.text = leagueDetailsPresenter.sportName == "tennis"
+            ? NSLocalizedString("TennisPlayersHeader", comment: "")
+            : NSLocalizedString("LatestResultsHeader", comment: "")
+        case 3:
+            header.titleLabel.text = NSLocalizedString("LeagueTeamsHeader", comment: "")
+        default:
+            header.titleLabel.text = ""
+        }
+        
+        return header
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -467,11 +510,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                             self.navigationController?.pushViewController(teamDetailsTableVC, animated: true)
                         } else {
                             let alert = UIAlertController(
-                                title: "No Internet Connection",
-                                message: "Check Your Internet Connection!",
+                                title: NSLocalizedString("no_internet_title", comment: ""),
+                                message: NSLocalizedString("no_internet_message", comment: ""),
                                 preferredStyle: .alert
                             )
-                            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .cancel))
                             self.present(alert, animated: true)
                         }
                     }
@@ -483,36 +526,4 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             
         }
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }

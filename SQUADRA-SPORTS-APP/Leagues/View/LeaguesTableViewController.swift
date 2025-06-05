@@ -11,6 +11,8 @@ import Alamofire
 
 protocol LeaguesProtocol {
     func renderLeaguesTableView(result: LeaguesResponse)
+    func reloadRow(at index: Int)
+    func confirmDeletion(of league: LeagueModel, at index: Int)
 }
 
 class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
@@ -21,7 +23,8 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "\(leaguesPresenter.sportName.capitalized) Leagues"
+        let localizedTitleFormat = NSLocalizedString("LeaguesTitle", comment: "")
+        self.navigationItem.title = String(format: localizedTitleFormat, leaguesPresenter.sportName.capitalized)
 
         let nib = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "LeaguesCell")
@@ -127,6 +130,45 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
         }
     }
     
+
+    override func tableView(_ tableView: UITableView,
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+    -> UISwipeActionsConfiguration? {
+        
+        let league = leaguesPresenter.leagues[indexPath.row]
+        let isFavorited = leaguesPresenter.isFavorited(leagueID: league.leagueID ?? 0)
+
+        let favoriteAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
+            self?.leaguesPresenter.toggleFavorite(for: indexPath.row)
+            completionHandler(true)
+        }
+
+        favoriteAction.image = UIImage(systemName: isFavorited ? "heart.fill" : "heart")
+        favoriteAction.backgroundColor = isFavorited ? .gray : .systemRed
+
+        return UISwipeActionsConfiguration(actions: [favoriteAction])
+    }
+
+
+    func reloadRow(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+
+    func confirmDeletion(of league: LeagueModel, at index: Int) {
+        let alert = UIAlertController(title: "Remove from Favorites",
+                                      message: "Are you sure you want to remove '\(league.leagueName ?? "this league")' from your favorites?",
+                                      preferredStyle: .alert)
+            
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] _ in
+            self?.leaguesPresenter.deleteFavorite(at: index)
+        }))
+        
+        present(alert, animated: true)
+    }
+
     
     /*
     // Override to support conditional editing of the table view.

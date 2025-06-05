@@ -18,9 +18,10 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if tabBarController.selectedIndex == 0 {
-            self.navigationItem.title = "Sports Categories"
+            self.navigationItem.title = NSLocalizedString("AllSportsTitle", comment: "Title for sports categories tab")
         } else if tabBarController.selectedIndex == 1 {
-            self.navigationItem.title = "Favourites Leagues"
+            self.navigationItem.title = NSLocalizedString("FavouritesTitle", comment: "Title for favourites leagues tab")
         }
     }
+
 }
