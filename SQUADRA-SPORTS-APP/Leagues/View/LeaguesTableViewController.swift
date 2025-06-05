@@ -157,7 +157,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
 
     func confirmDeletion(of league: LeagueModel, at index: Int) {
         let alert = UIAlertController(title: "Remove from Favorites",
-                                      message: "Are you sure you want to remove '\(league.leagueName ?? "this league")' from your favorites?",
+                                      message: "Are You Sure You Want To Remove '\(league.leagueName ?? "This League")' From Your Favourites?",
                                       preferredStyle: .alert)
             
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

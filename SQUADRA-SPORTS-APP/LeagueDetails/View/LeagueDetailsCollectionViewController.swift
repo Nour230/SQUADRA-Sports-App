@@ -166,7 +166,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 10, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 24, bottom: 10, trailing: 16)
         section.interGroupSpacing = 10
         
         section.visibleItemsInvalidationHandler = { (items, offset, environment) in
@@ -185,11 +185,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     func latestResultsEventsSection()->NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(375), heightDimension: .absolute(175))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(350), heightDimension: .absolute(175))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 10, trailing: 16)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 16, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 24, bottom: 10, trailing: 16)
         section.interGroupSpacing = 10
         addHeader(to: section)
         return section
@@ -202,7 +201,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 0)
         section.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 16, bottom: 8, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
         addHeader(to: section)
@@ -439,7 +437,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         
         // Create animation view
-        let animationView = LottieAnimationView(name: "NoDataFound")
+        let animationView = LottieAnimationView(name: "SquadraLoading")
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.loopMode = .loop
         animationView.animationSpeed = 0.7
