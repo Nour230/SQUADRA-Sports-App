@@ -42,6 +42,7 @@ class HeaderCollectionViewCell: UICollectionViewCell {
 
     private func updateAppearance() {
         if traitCollection.userInterfaceStyle == .dark {
+            headerLeagueImageView.backgroundColor = UIColor.white
             headerLeagueNameLabel.textColor = UIColor.white
             headerLeagueCountryLabel.textColor = UIColor.white
             headerLeagueSeasonLabel.textColor = UIColor.white

@@ -32,7 +32,7 @@ class SplashViewController: UIViewController {
             ])
             
             animationView.contentMode = .scaleAspectFit
-            animationView.loopMode = .repeat(4)
+            animationView.loopMode = .repeat(3)
             animationView.animationSpeed = 0.7
             
             animationView.play { [weak self] finished in
