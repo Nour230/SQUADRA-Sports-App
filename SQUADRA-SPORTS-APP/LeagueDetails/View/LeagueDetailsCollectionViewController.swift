@@ -437,7 +437,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         
         // Create animation view
-        let animationView = LottieAnimationView(name: "SquadraLoading")
+        let animationView = LottieAnimationView(name: "CR7")
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.loopMode = .loop
         animationView.animationSpeed = 0.7
@@ -447,9 +447,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
         
         NSLayoutConstraint.activate([
             animationView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor),
-            animationView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor, constant: -30),
+            animationView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor, constant: -15),
             animationView.widthAnchor.constraint(equalToConstant: 400),
-            animationView.heightAnchor.constraint(equalToConstant: 200),
+            animationView.heightAnchor.constraint(equalToConstant: 150),
         
         ])
         
