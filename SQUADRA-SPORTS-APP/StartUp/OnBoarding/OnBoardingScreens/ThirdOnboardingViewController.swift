@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ThirdOnboardingViewController: UIViewController {
     
@@ -13,6 +14,9 @@ class ThirdOnboardingViewController: UIViewController {
     @IBOutlet weak var thirdDescriptionTxt: UITextView!
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var squadraLogo: UIImageView!
+    @IBOutlet weak var playSoundButton: UIButton!
+    
+    var player: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,10 @@ class ThirdOnboardingViewController: UIViewController {
             getStartedButton.tintColor = UIColor.black
             getStartedButton.backgroundColor = UIColor.white
             squadraLogo.image = UIImage(named: "SQUADRALogoWhite")
+            playSoundButton.tintColor = UIColor.white
+            let soundImage = UIImage(named: "Sound-White")?.withRenderingMode(.alwaysTemplate)
+            playSoundButton.setImage(soundImage, for: .normal)
+            playSoundButton.tintColor = UIColor.white
         } else {
             self.view.backgroundColor = UIColor.white
             justAClickLabel.textColor = UIColor.black
@@ -54,7 +62,43 @@ class ThirdOnboardingViewController: UIViewController {
             getStartedButton.tintColor = UIColor.white
             getStartedButton.backgroundColor = UIColor.black
             squadraLogo.image = UIImage(named: "SQUADRALogo")
+            playSoundButton.tintColor = UIColor.black
+            let soundImage = UIImage(named: "Sound-White")?.withRenderingMode(.alwaysTemplate)
+            playSoundButton.setImage(soundImage, for: .normal)
+            playSoundButton.tintColor = UIColor.black
         }
+    }
+    
+    @IBAction func playSound(_ sender: Any) {
+        if let player = player, player.isPlaying {
+            player.pause()
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 15, weight: .semibold)
+            ]
+            let attributedTitle = NSAttributedString(string: "   Play Sound", attributes: attributes)
+            playSoundButton.setAttributedTitle(attributedTitle, for: .normal)
+        } else {
+            playSoundTrack(sender as! UIButton)
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 15, weight: .semibold)
+            ]
+            let attributedTitle = NSAttributedString(string: "   Pause Sound", attributes: attributes)
+            playSoundButton.setAttributedTitle(attributedTitle, for: .normal)
+        }
+    }
+
+    
+    func playSoundTrack(_ sender: UIButton) {
+        if player == nil {
+            guard let url = Bundle.main.url(forResource: "SquadraTrack", withExtension: "mp3") else { return }
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+            } catch {
+                print("Error initializing sound: \(error)")
+                return
+            }
+        }
+        player?.play()
     }
     
         /*
