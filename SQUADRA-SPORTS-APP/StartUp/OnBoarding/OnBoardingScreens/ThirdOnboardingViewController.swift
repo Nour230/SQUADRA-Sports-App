@@ -18,6 +18,8 @@ class ThirdOnboardingViewController: UIViewController {
     
     var player: AVAudioPlayer!
     
+    var isPlaying : Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,8 @@ class ThirdOnboardingViewController: UIViewController {
         let MainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if let tabBarVC = MainStoryboard.instantiateViewController(withIdentifier: "MainNavigation") as? MainNavigationViewController {
             tabBarVC.modalPresentationStyle = .fullScreen
+            tabBarVC.isPlayed = self.isPlaying
+            tabBarVC.navPlayer = player
             self.present(tabBarVC, animated: true)
         }
     }
@@ -72,6 +76,7 @@ class ThirdOnboardingViewController: UIViewController {
     @IBAction func playSound(_ sender: Any) {
         if let player = player, player.isPlaying {
             player.pause()
+            self.isPlaying = false
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 15, weight: .semibold)
             ]
@@ -79,6 +84,7 @@ class ThirdOnboardingViewController: UIViewController {
             playSoundButton.setAttributedTitle(attributedTitle, for: .normal)
         } else {
             playSoundTrack(sender as! UIButton)
+            self.isPlaying = true
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 15, weight: .semibold)
             ]
