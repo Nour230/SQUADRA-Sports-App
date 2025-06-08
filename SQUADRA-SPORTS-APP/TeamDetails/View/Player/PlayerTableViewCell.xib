@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="PlayerTableViewCell" customModule="SQUADRA_SPORTS_APP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="450" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O0t-iY-ItD">
+                        <rect key="frame" x="8" y="4" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="MCr-ar-tgG"/>
+                            <constraint firstAttribute="height" constant="45" id="Uno-kU-w7r"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="22.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urd-FP-MHJ">
+                        <rect key="frame" x="69" y="4" width="225" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Age" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zX1-pf-pjg">
+                        <rect key="frame" x="92" y="27.666666666666671" width="68.666666666666686" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calender" translatesAutoresizingMaskIntoConstraints="NO" id="Ugc-wj-1WD">
+                        <rect key="frame" x="69" y="26" width="20" height="20"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="1EE-KZ-Wrt"/>
+                            <constraint firstAttribute="width" constant="20" id="fQp-Ha-1lQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfa-bu-F70">
+                        <rect key="frame" x="203.66666666666666" y="27.666666666666671" width="94.999999999999972" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Position" translatesAutoresizingMaskIntoConstraints="NO" id="aCM-x7-e1M">
+                        <rect key="frame" x="180.66666666666666" y="26" width="20" height="20"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="cvb-o5-VmB"/>
+                            <constraint firstAttribute="height" constant="20" id="g10-XF-DIt"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T-Shirt" translatesAutoresizingMaskIntoConstraints="NO" id="PDf-ls-yhe">
+                        <rect key="frame" x="318.66666666666669" y="26" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="NiA-gQ-lTd"/>
+                            <constraint firstAttribute="width" constant="20" id="gU9-Oh-gLt"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Number" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7k-Ta-rsI">
+                        <rect key="frame" x="341.66666666666669" y="27.666666666666671" width="95.333333333333314" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PDf-ls-yhe" firstAttribute="centerY" secondItem="aCM-x7-e1M" secondAttribute="centerY" id="511-He-amb"/>
+                    <constraint firstItem="i7k-Ta-rsI" firstAttribute="leading" secondItem="PDf-ls-yhe" secondAttribute="trailing" constant="3" id="7M1-GN-Oot"/>
+                    <constraint firstItem="Urd-FP-MHJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="7wY-vf-Gc1"/>
+                    <constraint firstItem="Ugc-wj-1WD" firstAttribute="leading" secondItem="Urd-FP-MHJ" secondAttribute="leading" id="Db5-So-CKq"/>
+                    <constraint firstItem="i7k-Ta-rsI" firstAttribute="centerY" secondItem="PDf-ls-yhe" secondAttribute="centerY" id="EcH-am-mFr"/>
+                    <constraint firstItem="PDf-ls-yhe" firstAttribute="leading" secondItem="yfa-bu-F70" secondAttribute="trailing" constant="20" id="HCY-sm-kpV"/>
+                    <constraint firstItem="aCM-x7-e1M" firstAttribute="leading" secondItem="zX1-pf-pjg" secondAttribute="trailing" constant="20" id="HNB-sE-df0"/>
+                    <constraint firstItem="zX1-pf-pjg" firstAttribute="leading" secondItem="Ugc-wj-1WD" secondAttribute="trailing" constant="3" id="L79-2R-C2Q"/>
+                    <constraint firstItem="yfa-bu-F70" firstAttribute="centerY" secondItem="aCM-x7-e1M" secondAttribute="centerY" id="M6d-rd-Sru"/>
+                    <constraint firstItem="O0t-iY-ItD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Mle-CR-l7K"/>
+                    <constraint firstItem="O0t-iY-ItD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Nda-4N-qsi"/>
+                    <constraint firstItem="Ugc-wj-1WD" firstAttribute="top" secondItem="Urd-FP-MHJ" secondAttribute="bottom" constant="4" id="W2D-uP-7Vr"/>
+                    <constraint firstItem="yfa-bu-F70" firstAttribute="leading" secondItem="aCM-x7-e1M" secondAttribute="trailing" constant="3" id="c1f-Lo-Aif"/>
+                    <constraint firstItem="Urd-FP-MHJ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="hdZ-Y0-Kxi"/>
+                    <constraint firstItem="Urd-FP-MHJ" firstAttribute="leading" secondItem="O0t-iY-ItD" secondAttribute="trailing" constant="16" id="hf6-pb-i3M"/>
+                    <constraint firstItem="aCM-x7-e1M" firstAttribute="centerY" secondItem="Ugc-wj-1WD" secondAttribute="centerY" id="qM3-Wu-kXH"/>
+                    <constraint firstAttribute="bottom" secondItem="O0t-iY-ItD" secondAttribute="bottom" constant="4" id="ubp-9A-TfO"/>
+                    <constraint firstItem="zX1-pf-pjg" firstAttribute="centerY" secondItem="Ugc-wj-1WD" secondAttribute="centerY" id="wgs-Zv-sbS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="playerAgeIcon" destination="Ugc-wj-1WD" id="Fas-hq-UjY"/>
+                <outlet property="playerAgeLabel" destination="zX1-pf-pjg" id="QRB-eO-SRu"/>
+                <outlet property="playerImageView" destination="O0t-iY-ItD" id="Lxd-vk-IX0"/>
+                <outlet property="playerNameLabel" destination="Urd-FP-MHJ" id="rU9-yb-gFb"/>
+                <outlet property="playerNumberIcon" destination="PDf-ls-yhe" id="7w1-1Y-Vnf"/>
+                <outlet property="playerNumberLabel" destination="i7k-Ta-rsI" id="nbM-PT-zFM"/>
+                <outlet property="playerPositionIcon" destination="aCM-x7-e1M" id="DqQ-P5-jy7"/>
+                <outlet property="playerPositionLabel" destination="yfa-bu-F70" id="PZb-9x-KDw"/>
+            </connections>
+            <point key="canvasLocation" x="39.694656488549619" y="31.690140845070424"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Calender" width="32" height="32"/>
+        <image name="Position" width="32" height="32"/>
+        <image name="T-Shirt" width="32" height="32"/>
+    </resources>
+</document>

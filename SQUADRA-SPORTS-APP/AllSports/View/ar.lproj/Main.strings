@@ -1,0 +1,9 @@
+
+/* Class = "UINavigationItem"; title = "Sports Categories"; ObjectID = "CEm-sg-y8d"; */
+"CEm-sg-y8d.title" = "فئات الرياضة";
+
+/* Class = "UITabBarItem"; title = "Sports"; ObjectID = "VFo-3R-A4W"; */
+"VFo-3R-A4W.title" = "رياضة";
+
+/* Class = "UITabBarItem"; title = "Favourites"; ObjectID = "z9R-ZY-wMf"; */
+"z9R-ZY-wMf.title" = "المفضلة";
