@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     
+    @IBOutlet weak var barSoundIcon: UIBarButtonItem!
+    
+    var player: AVAudioPlayer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -24,4 +29,41 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
         }
     }
 
+    @IBAction func playAndStopSound(_ sender: Any) {
+        if let navController = self.navigationController as? MainNavigationViewController {
+            var isPlayed = navController.isPlayed ?? false
+            let tabplayer = navController.navPlayer
+            print("isPlayed = \(isPlayed)")
+            
+            if isPlayed {
+                navController.isPlayed = false
+                if let player = tabplayer {
+                    player.pause()
+                } else {
+                    print("Player is nil — nothing to pause.")
+                }
+            } else {
+                if let player = player, player.isPlaying {
+                    player.pause()
+                } else {
+                    playSoundTrack(sender as! UIButton)
+                }
+            }
+        }
+    }
+
+    
+    
+    func playSoundTrack(_ sender: UIButton) {
+        if player == nil {
+            guard let url = Bundle.main.url(forResource: "SquadraTrack", withExtension: "mp3") else { return }
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+            } catch {
+                print("Error initializing sound: \(error)")
+                return
+            }
+        }
+        player?.play()
+    }
 }

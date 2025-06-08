@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainNavigationViewController: UINavigationController {
-
+    
+    var isPlayed : Bool!
+    var navPlayer: AVAudioPlayer!
     override func viewDidLoad() {
         super.viewDidLoad()
 
