@@ -328,6 +328,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 cell.timeOrScoreLabel.text = tennisEvent.eventFinalResult ?? "-"
                 cell.dateLabel.text = tennisEvent.eventDate ?? "Unknown Date"
+                cell.leagueNameLabel.text = tennisEvent.leagueName
                 
                 return cell
             } else {
@@ -357,6 +358,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 cell.timeOrScoreLabel.text = event.eventTime ?? "Unkown Time"
                 cell.dateLabel.text = event.eventDate ?? "Unkown Date"
+                cell.leagueNameLabel.text = event.leagueName
                 
                 return cell
             }
@@ -407,6 +409,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
                 
                 cell.timeOrScoreLabel.text = event.result ?? "-"
                 cell.dateLabel.text = event.eventDate ?? "Unkown Date"
+                cell.leagueNameLabel.text = event.leagueName
                 
                 return cell
             }

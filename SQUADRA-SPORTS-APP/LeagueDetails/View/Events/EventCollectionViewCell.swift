@@ -9,6 +9,8 @@ import UIKit
 
 class EventCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var leagueNameLabel: UILabel!
+    
     @IBOutlet weak var homeTeamImageView: UIImageView!
     @IBOutlet weak var homeTeamLabel: UILabel!
     
@@ -38,6 +40,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             awayTeamLabel.textColor = UIColor.black
             timeOrScoreLabel.textColor = UIColor.black
             dateLabel.textColor = UIColor.black
+            leagueNameLabel.textColor = UIColor.black
             
         } else {
             self.backgroundColor = UIColor.black
@@ -45,6 +48,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             awayTeamLabel.textColor = UIColor.white
             timeOrScoreLabel.textColor = UIColor.white
             dateLabel.textColor = UIColor.white
+            leagueNameLabel.textColor = UIColor.white
         }
     }
 }
