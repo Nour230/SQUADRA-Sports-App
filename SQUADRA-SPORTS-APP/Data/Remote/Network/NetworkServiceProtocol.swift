@@ -13,5 +13,5 @@ protocol NetworkServiceProtocol{
     static func getLatestResultsLeagueDetails(sportName: String,leagueID: Int, handler: @escaping (LatestResultsEventResponse)->Void)
     static func getAllTeamsDetails(sportName: String,leagueID: Int, handler: @escaping (AllTeamsResponse)->Void)
     static func getTennisPlayerbyLeagueID(leagueId: Int, handler: @escaping (TennisPlayerResponse)->Void)
-    static func getAllTennisPlayer( handler: @escaping (TennisPlayerResponse)->Void)
+    static func getAllTennisPlayer(leagueId: Int, handler: @escaping (AllTennisPlayerResponse)->Void)
 }

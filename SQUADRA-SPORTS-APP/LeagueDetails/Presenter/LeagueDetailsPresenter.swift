@@ -46,7 +46,7 @@ class LeagueDetailsPresenter{
     
     func getAllTeamsFromNetwork() {
         if(sportName == "tennis"){
-            NetworkService.getAllTennisPlayer{ res in
+            NetworkService.getAllTennisPlayer(leagueId: leagueID){ res in
                 self.leaguesDetailsCollectionView.displayAllTennisPlayers(res: res)
             }
         }else{

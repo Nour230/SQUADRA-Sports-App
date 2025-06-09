@@ -16,7 +16,6 @@ class NetworkService :NetworkServiceProtocol{
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print(items.result[0].leagueID!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -33,12 +32,11 @@ class NetworkService :NetworkServiceProtocol{
         let fromDate = dateFormatter.string(from: currentDate)
         let toDate = dateFormatter.string(from: oneYearLater)
         
-        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=2024-05-31&to=2025-05-31&APIkey=\(APIKeys.NourAPIKey)")
+        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=\(fromDate)&to=\(toDate)&APIkey=\(APIKeys.NourAPIKey)")
             .responseDecodable(of: UpcomingEventResponse.self) { response in
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print(items.result[0].leagueId!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -55,12 +53,11 @@ class NetworkService :NetworkServiceProtocol{
         let fromDate = dateFormatter.string(from: oneYearBefore)
         let toDate = dateFormatter.string(from: currentDate)
         
-        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=2024-05-31&to=2025-05-31&APIkey=\(APIKeys.NourAPIKey)")
+        AF.request("https://apiv2.allsportsapi.com/\(sportName)/?met=Fixtures&leagueId=\(leagueID)&from=\(fromDate)&to=\(toDate)&APIkey=\(APIKeys.NourAPIKey)")
             .responseDecodable(of: LatestResultsEventResponse.self) { response in
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print(items.result[0].leagueID!)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -96,7 +93,6 @@ class NetworkService :NetworkServiceProtocol{
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print("------------------------\(items.result[0])")
                 case .failure(let error):
                     print("error is : \(error.localizedDescription)")
                 }
@@ -106,7 +102,7 @@ class NetworkService :NetworkServiceProtocol{
     
 
     
-    static func getAllTennisPlayer( handler: @escaping (TennisPlayerResponse)->Void) {
+    static func getAllTennisPlayer(leagueId: Int, handler: @escaping (AllTennisPlayerResponse)->Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
@@ -116,14 +112,13 @@ class NetworkService :NetworkServiceProtocol{
         let fromDate = dateFormatter.string(from: oneYearBefore)
         let toDate = dateFormatter.string(from: currentDate)
         
-        AF.request("https://apiv2.allsportsapi.com/tennis/?met=Fixtures&from=2025-06-02&to=2026-06-02&APIkey=\(APIKeys.NourAPIKey)")
-            .responseDecodable(of: TennisPlayerResponse.self) { response in
+        AF.request("https://apiv2.allsportsapi.com/tennis/?met=Players&from=\(fromDate)&to=\(toDate)&leagueId=\(leagueId)&APIkey=\(APIKeys.NourAPIKey)")
+            .responseDecodable(of: AllTennisPlayerResponse.self) { response in
                 switch response.result {
                 case .success(let items):
                     handler(items)
-                    print("------------------------\(items.result[0])")
                 case .failure(let error):
-                    print("error is : \(error.localizedDescription)")
+                    print("tennis player error is : \(error.localizedDescription)")
                 }
             }
     }

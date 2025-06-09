@@ -12,7 +12,7 @@ protocol LeagueDetailsProtocol{
     func displayLatestResultsLeagueDetails(res : LatestResultsEventResponse)
     func displayAllTeams(res: AllTeamsResponse)
     func displayHeaderLeagueDetails(res : LeagueModel)
-    func displayAllTennisPlayers(res : TennisPlayerResponse)
+    func displayAllTennisPlayers(res : AllTennisPlayerResponse)
     func displatAllResentTennisEvents(res : TennisPlayerResponse)
 }
 
@@ -27,7 +27,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     
     var allTeams : [TeamModel] = []
     var allResentTennisEvents : [TennisPlayerModel] = []
-    var allTennisPlayers : [TennisPlayerModel] = []
+    var allTennisPlayers : [AllTennisPlayerModel] = []
     
     var headerLeagueSeason : String!
     
@@ -79,7 +79,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
     }
     
     
-    func displayAllTennisPlayers(res: TennisPlayerResponse) {
+    func displayAllTennisPlayers(res: AllTennisPlayerResponse) {
         DispatchQueue.main.async {
             self.allTennisPlayers = Array(res.result.dropFirst(30).prefix(30))
             self.collectionView.reloadData()
@@ -296,7 +296,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController ,LeagueD
             cell.delegate = self
             cell.isFavorite = leagueDetailsPresenter.getLeagueByID()
             cell.updateFavButton()
-            print(cell.isFavorite!)
             
             return cell
             

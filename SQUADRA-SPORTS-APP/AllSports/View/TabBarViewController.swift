@@ -10,13 +10,15 @@ import AVFoundation
 
 class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     
-    @IBOutlet weak var barSoundIcon: UIBarButtonItem!
+   
+    @IBOutlet weak var soundImage: UIButton!
     
     var player: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        updateSoundIconColor()
     }
     
     
@@ -31,7 +33,7 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
 
     @IBAction func playAndStopSound(_ sender: Any) {
         if let navController = self.navigationController as? MainNavigationViewController {
-            var isPlayed = navController.isPlayed ?? false
+            let isPlayed = navController.isPlayed ?? false
             let tabplayer = navController.navPlayer
             print("isPlayed = \(isPlayed)")
             
@@ -66,4 +68,25 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
         }
         player?.play()
     }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateSoundIconColor()
+        }
+    }
+
+    func updateSoundIconColor() {
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        let imageName = isDarkMode ? "Sound-White" : "Sound-Black"
+
+        if let image = UIImage(named: imageName) {
+            soundImage.setImage(image, for: .normal)
+            soundImage.tintColor = nil
+        }
+    }
+
+
 }

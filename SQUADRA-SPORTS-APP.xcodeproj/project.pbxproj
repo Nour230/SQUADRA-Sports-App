@@ -283,10 +283,18 @@
 		147D59192DEDD5A300E73181 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				14894E6D2DF6FFC500F87F67 /* DataBase */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		14894E6D2DF6FFC500F87F67 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
 				147D591A2DEDD5D800E73181 /* LocalDataSource.swift */,
 				147D591C2DEDD5F900E73181 /* LocalDataSourceProtocol.swift */,
 			);
-			path = Local;
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 		1495751F2DEE38830048DC49 /* Favourites */ = {
