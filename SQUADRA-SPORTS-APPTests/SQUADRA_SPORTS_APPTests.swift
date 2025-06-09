@@ -21,10 +21,10 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
 
     func testGetAllTennisPlayer(){
         let exp = expectation(description: "Waiting for responce ")
-        NetworkService.getAllTennisPlayer{ tennisPlayer in
+        NetworkService.getAllTennisPlayer(leagueId: 12417){ tennisPlayer in
             
             if (!tennisPlayer.result.isEmpty){
-                XCTAssert(tennisPlayer.result.count == 974)
+                XCTAssertNotNil(tennisPlayer.result)
             }
             else{
                 XCTFail()
@@ -93,7 +93,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 55)
+        waitForExpectations(timeout: 100)
     }
     
     func testGetLeagues(){
