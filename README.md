@@ -35,7 +35,7 @@ Fetches live sports data from the [All Sports API](https://allsportsapi.com/) to
 | 🔧 Category       | 🛠️ Technology                 |
 | ----------------- | -----------------------------|
 | **Language**      | Swift                        |
-| **Architecture**  | MVVM (Model-View-ViewModel)  |
+| **Architecture**  | MVP (Model-View-Presenter)  |
 | **Networking**    | Alamofire                    |
 | **Persistence**   | Core Data                   |
 | **UI**            | UIKit with Auto Layout       |
