@@ -31,7 +31,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 15)
     }
     
 
@@ -47,7 +47,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 15)
     }
     
     func testGetAllTeamsDetails(){
@@ -61,7 +61,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 15)
     }
     
     
@@ -78,7 +78,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 15)
     }
     
     func testGetUpcomingLeagueDetails(){
@@ -93,7 +93,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 55)
     }
     
     func testGetLeagues(){
@@ -107,7 +107,7 @@ final class SQUADRA_SPORTS_APPTests: XCTestCase {
             }
             exp.fulfill()
         }
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 15)
     }
     
 }

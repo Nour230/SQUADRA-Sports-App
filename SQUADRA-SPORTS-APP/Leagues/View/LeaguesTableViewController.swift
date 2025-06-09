@@ -107,7 +107,6 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
             guard let leagueID = leaguesArray[indexPath.row].leagueID else { return }
             
             let headerLeague = leaguesArray[indexPath.row]
-            print(headerLeague)
             
             let leagueDetailsPresenter = LeagueDetailsPresenter(sportName: name, leagueID: leagueID, headerLeague: headerLeague, leaguesDetailsCollectionView: leagueDetailsCollectionVC)
             leagueDetailsCollectionVC.leagueDetailsPresenter = leagueDetailsPresenter
@@ -157,7 +156,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol {
 
     func confirmDeletion(of league: LeagueModel, at index: Int) {
         let alert = UIAlertController(title: "Remove from Favorites",
-                                      message: "Are You Sure You Want To Remove '\(league.leagueName ?? "This League")' From Your Favourites?",
+                                      message: "Are You Sure You Want To Remove '\(league.leagueName )' From Your Favourites?",
                                       preferredStyle: .alert)
             
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

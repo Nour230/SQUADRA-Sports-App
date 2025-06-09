@@ -12,7 +12,7 @@ struct TennisPlayerResponse: Codable {
 }
 
 struct TennisPlayerModel: Codable {
-    let leagueName: String
+    let leagueName: String?
     let eventFinalResult: String?
     let eventFirstPlayer: String?
     let eventFirstPlayerLogo: String?
@@ -32,6 +32,22 @@ struct TennisPlayerModel: Codable {
         case eventScoundPlayerLogo = "event_second_player_logo"
         case leagueName = "league_name"
         case leagueSeason = "league_season"
+        
+    }
+}
+
+
+
+struct AllTennisPlayerResponse: Codable {
+    let result: [AllTennisPlayerModel]
+}
+struct AllTennisPlayerModel: Codable {
+    let eventFirstPlayer: String?
+    let eventFirstPlayerLogo: String?
+    
+    enum CodingKeys: String,CodingKey {
+        case eventFirstPlayer = "player_name"
+        case eventFirstPlayerLogo = "player_logo"
         
     }
 }
