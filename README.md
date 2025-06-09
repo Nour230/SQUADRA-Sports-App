@@ -66,6 +66,6 @@ Build and run on your simulator or physical iOS device.
 
 ## 👥 **Team Members**
  Nourhan     
- Adhan       
+ Adham       
 
 ✨ Thank you for exploring SQUADRA Sports App!
